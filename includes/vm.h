@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/03/27 17:35:41 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/03/27 18:01:42 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,19 @@ typedef struct	s_vm
 	int			cycles;
 	int			players_alive;
 	int			cycle_reduction;
+	int			dump;
 }				t_vm;
 
 typedef struct	s_proc
 {
 	char		reg[REG_SIZE * REG_NUMBER];
+	char		pc[REG_SIZE];
 	char		player;
 	t_header	header;
 	t_arg_type	arg_type[3];
 	char		instruction;
 	int			ocp;
+	int			carry;
 }				t_proc;
 
 #endif
