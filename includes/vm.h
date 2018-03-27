@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/03/27 15:50:53 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/03/27 15:52:35 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "op.h"
 
-# define	REDUCED_CTD		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reductions))
-# define	CYCLE_TO_CHECK	(data->cycles % REDUCED_CTD)
+# define	REDUCED_CTD(data)		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reductions))
+# define	CYCLE_TO_CHECK(data)	(data->cycles % REDUCED_CTD)
 
 typedef struct	s_vm
 {
