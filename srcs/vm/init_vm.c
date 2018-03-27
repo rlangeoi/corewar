@@ -6,16 +6,24 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/03/27 16:27:06 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/03/27 17:39:58 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int			ft_empty_process(t_proc the_process)
+{
+	the_process->player = 0;
+	the_process->instruction = 0;
+	the_process->ocp = 0;
+	return (0);
+}
 
 t_process	*ft_mkproc()
 {
 	t_proc		*the_process;
 	t_header	*the_header;
 
-	if (!(the_process = (t_process*)malloc(sizeof(t_process))))
+	if (!(the_process = (t_proc*)malloc(sizeof(t_proc))))
 		return (NULL);
 	if (!(the_process.header = (t_header*)malloc(sizeof(t_header))))
 	{
@@ -32,16 +40,14 @@ t_list	*ft_add_process(t_list *processes)
 
 	if (!(process = mkproc()))
 		return (NULL);
-	if (!(new = ft_lstnew((void)process, (sizeof(t_process)))))
+	if (!(new = (t_list*)ft_lstnew((void)process, (sizeof(t_proc)))))
+		return (NULL);
+	if (ft_empty_process(process))
 		return (NULL);
 	if (processes = NULL)
-	{
 		return (new);
-	}
 	else
-	{
 		processes = ft_lstadd_end(&processes, new);
-	}
 	return (processes);
 }
 
