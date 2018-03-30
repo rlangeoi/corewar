@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/03/30 18:16:08 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:23:31 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct	s_vm
 	char		nb_players;
 	char		verbose;
 	t_list		*processes;
-	t_list		*players;
 	int			cycles;
 	int			players_alive;
 	int			cycle_reduction;
