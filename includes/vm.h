@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/03/27 18:01:42 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:16:08 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ typedef struct	s_vm
 {
 	char		ram[MEM_SIZE];
 	char		nb_players;
-	char		flags;
+	char		verbose;
 	t_list		*processes;
 	t_list		*players;
 	int			cycles;
 	int			players_alive;
 	int			cycle_reduction;
 	int			dump;
+	int			checks;
+	void		(*f[16])(struct s_vm *, t_proc *);
 }				t_vm;
 
 typedef struct	s_proc
