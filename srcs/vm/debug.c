@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 15:04:49 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/01 16:00:56 by                  ###   ########.fr       */
+/*   Updated: 2018/04/02 10:49:24 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,20 @@ void	ft_vomit_data(t_vm *data)
 	while (++i < 4)
 	{
 		ft_printf("Player #%d : %s\n", i + 1, data->players[i]);
+	}
+}
+
+void	ft_print_headers(t_vm *data)
+{
+	t_list		*list;
+	header_t	*head;
+
+	list = data->headers;
+	while (list)
+	{
+		if (list->content)
+			head = (header_t*)list->content;
+			ft_printf("name %s, magic %d, comment %s, prog_size %d", head->prog_name, head->magic, head->comment, head->prog_size);
+		list = list->next;
 	}
 }

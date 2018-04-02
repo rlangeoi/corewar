@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:27:42 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/01 17:31:14 by                  ###   ########.fr       */
+/*   Updated: 2018/04/02 10:50:42 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int	main(int argc, char **argv)
 		ft_parse_arguments(argc, argv, &data);
 		ft_check_data(&data);
 		ft_vomit_data(&data);
+		ft_parse_champs(&data);
+		ft_print_headers(&data);
 	}
 }

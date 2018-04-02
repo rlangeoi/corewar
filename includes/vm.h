@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/01 20:19:16 by                  ###   ########.fr       */
+/*   Updated: 2018/04/02 10:51:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_vm
 void				ft_init_vm(t_vm *data);
 t_list				*ft_add_process(t_list *processes);
 void				ft_parse_arguments(int argc, char **argv, t_vm *data);
+void				ft_parse_champs(t_vm *data);
 int					ft_check_data(t_vm *data);
 unsigned int		ft_check_endianness(t_vm *data);
 unsigned int		switch_endianness(unsigned int bytes);
@@ -69,5 +70,6 @@ void				exit_error(char *error, char *file);
 void				print_usage(void);
 
 void				ft_vomit_data(t_vm *data);
+void				ft_print_headers(t_vm *data);
 
 #endif

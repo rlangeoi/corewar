@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by                   #+#    #+#             */
-/*   Updated: 2018/04/01 20:20:11 by                  ###   ########.fr       */
+/*   Updated: 2018/04/02 10:55:42 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ void	ft_parse_headers(t_vm *data, int fd)
 		exit_error(ERR_MALLOC, NULL);
 	if ((i = read(fd, (void *)(header), sizeof(header_t))) == -1)
 		exit_error(ERR_READ, NULL);
-	if (i != sizeof(header))
-		exit_error(ERR_HEADER, header->prog_name);
+//	if (i != sizeof(header))
+//		exit_error(ERR_HEADER, header->prog_name);
 	header->magic = switch_endianness(header->magic);
 	header->prog_size = switch_endianness(header->prog_size);
 	if (!(new = ft_lstnew(((header_t*)header), sizeof(header_t))))
 		exit_error(ERR_MALLOC, NULL);
 	ft_lstadd_end(&(data->headers), new);
-	if ((i = close(fd)) == -1)
-		exit_error(ERR_READ, NULL);
 }
 
 void	ft_parse_champs(t_vm *data)
