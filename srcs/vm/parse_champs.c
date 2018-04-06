@@ -6,22 +6,30 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by                   #+#    #+#             */
-/*   Updated: 2018/04/02 11:54:32 by                  ###   ########.fr       */
+/*   Updated: 2018/04/05 16:35:43 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	ft_parse_instructions(t_vm *data, int fd, int pnum, unsigned int psize)
+static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 {
 	int 		r;
-	t_list		*list;
+	int			psize;
 	header_t	*header;
 
-	if ((r = read(fd, data->players[pnum],
+	while (lst && lst->next != NULL)
+		lst = lst->next;
+	header = (header_t*)lst->content;
+	psize = (int)header->prog_size;
+	if ((r = read(fd, player, psize)) == -1)
+		exit_error(ERR_READ, NULL);
+	ft_printf("r %d, psize %d\n", r, psize);
+	if (r != psize)
+		exit_error(ERR_SIZE, NULL);
 }
 
-void	ft_parse_headers(t_vm *data, int fd)
+static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 {
 	header_t	*header;
 	t_list		*new;
@@ -35,28 +43,35 @@ void	ft_parse_headers(t_vm *data, int fd)
 		exit_error(ERR_HEADER, header->prog_name);
 	header->magic = switch_endianness(header->magic);
 	header->prog_size = switch_endianness(header->prog_size);
-	ft_printf("i:%d\n, sizeof:%d\n, magic:%d\n, corewarmagic:%d\n, sizeof:%d\n", i, sizeof(header_t), header->magic, COREWAR_EXEC_MAGIC, sizeof(header));
-	if (!(new = ft_lstnew(((header_t*)header), sizeof(header_t))))
+	ft_printf("i:%d, sizeof:%d, magic:%d, corewarmagic:%d\n", i, sizeof(header_t), header->magic, COREWAR_EXEC_MAGIC);
+	if (header->prog_size > CHAMP_MAX_SIZE)
+		exit_error("Champ too big in ", data->players[pnum]);
+	if (!(new = ft_lstnew(((void*)header), sizeof(header_t))))
 		exit_error(ERR_MALLOC, NULL);
 	ft_lstadd_end(&(data->headers), new);
 }
 
-void	ft_parse_champs(t_vm *data)
+void		ft_parse_champs(t_vm *data)
 {
 	int	i;
 	int fd;
-	int psize;
 
 	i = -1;
 	while (++i < MAX_PLAYERS)
 	{
+		ft_printf("i%d\n", i);
 		if (data->players[i][0])
+		{
 			if ((fd = open(data->players[i], O_RDONLY)) != -1)
 			{
-				ft_parse_headers(data, fd);
-				ft_parse_instructions(data, fd, i);
+				ft_parse_headers(data, fd, i);
+				ft_parse_instructions(data->headers, data->players[i], fd);
 				if ((fd = close(fd)) == -1)
 					exit_error(ERR_READ, NULL);
 			}
+			else
+				exit_error(ERR_READ, NULL);
+		}
 	}
+	ft_printf("byebye\n");
 }

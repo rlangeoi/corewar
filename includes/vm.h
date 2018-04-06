@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/02 11:54:37 by                  ###   ########.fr       */
+/*   Updated: 2018/04/05 18:39:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define	ERR_MALLOC	"Couldn't allocate memory"
 # define	ERR_DUMP	"Dump and verbose values cannot be negative"
 # define	ERR_PNUM	"Invalid player number"
-# define	ERR_HEADER	"Invalid header"
+# define	ERR_HEADER	"Invalid header "
+# define	ERR_SIZE	"Program size does not match header"
 # define	NO_FLAG		0
 # define	FLAG_AFF	1
 # define	FLAG_CURSES	2
@@ -36,10 +37,16 @@ typedef struct		s_proc
 	char			reg[REG_SIZE * REG_NUMBER];
 	char			pc[REG_SIZE];
 	char			player;
+	int				param[3];
 	t_arg_type		arg_type[3];
 	char			instruction;
+	int				pc;
+	int				pc2;
+	int				at_cycle;
+	int				live_at_cycle;
 	int				ocp;
 	int				carry;
+	int				live;
 }					t_proc;
 
 typedef struct		s_vm

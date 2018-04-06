@@ -6,32 +6,30 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/01 18:31:25 by                  ###   ########.fr       */
+/*   Updated: 2018/04/05 18:47:44 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-static int		ft_empty_process(t_proc *the_process)
-{
-	the_process->player = 0;
-	the_process->instruction = 0;
-	the_process->ocp = 0;
-	ft_bzero(&the_process->reg[0], REG_SIZE * REG_NUMBER);
-	ft_bzero(&the_process->pc[0], REG_SIZE);
-	return (0);
-}
-
-static t_proc	*ft_mkproc()
+static t_proc	*ft_mkproc(int pnum)
 {
 	t_proc		*the_process;
 
 	if (!(the_process = (t_proc*)malloc(sizeof(t_proc))))
 		return (NULL);
+	the_process->player = pnum;
+	reg[0] = (char)pnum;
+	the_process->instruction = 0;
+	the_process->ocp = 0;
+	ft_bzero(&the_process->reg[1], (REG_SIZE * REG_NUMBER) - 1);
+	ft_bzero(&the_process->pc[0], REG_SIZE);
+	ft_bzero(&the_process->param[0], sizeof(int) * 3);
+	ft_bzero(&the_process->arg_type[0], (sizeof(t_arg_type) * 3));
 	return (the_process);
 }
 
-t_list			*ft_add_process(t_list *processes)
+t_list			*ft_add_process(t_list *processes, int pnum)
 {
 	t_list	*new;
 	t_proc	*process;
@@ -40,12 +38,10 @@ t_list			*ft_add_process(t_list *processes)
 		return (NULL);
 	if (!(new = (t_list*)ft_lstnew((void*)process, (sizeof(t_proc)))))
 		return (NULL);
-	if (ft_empty_process(process))
-		return (NULL);
 	if (processes == NULL)
 		return (new);
 	else
-		processes = ft_lstadd_end(&processes, new);
+		processes = ft_lstadd(&processes, new);
 	return (processes);
 }
 

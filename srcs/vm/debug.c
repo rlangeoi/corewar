@@ -6,11 +6,12 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 15:04:49 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/02 10:49:24 by                  ###   ########.fr       */
+/*   Updated: 2018/04/05 16:54:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
+#include <stdio.h>
 
 void	ft_vomit_data(t_vm *data)
 {
@@ -30,11 +31,13 @@ void	ft_print_headers(t_vm *data)
 	header_t	*head;
 
 	list = data->headers;
-	while (list)
+	while (list != NULL)
 	{
-		if (list->content)
+		if (list != NULL && list->content != NULL)
+		{	
 			head = (header_t*)list->content;
-			ft_printf("name %s, magic %d, comment %s, prog_size %d", head->prog_name, head->magic, head->comment, head->prog_size);
+			ft_printf("name %s, magic %d, comment %s, prog_size %d\n", head->prog_name, head->magic, head->comment, head->prog_size);
+		}
 		list = list->next;
 	}
 }
