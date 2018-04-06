@@ -6,12 +6,26 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 15:04:49 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 17:06:42 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/06 19:18:41 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 #include <stdio.h>
+
+void	ft_herald_debug(t_vm *data, t_list *procs)
+{
+	header_t	*head;
+	t_proc		*proc;
+
+	while (procs)
+	{
+		proc = (t_proc*)procs->content;
+		head = (header_t*)proc->header;
+		printf("pc %d, player %d, num %d, name %s\n", proc->pc, proc->player, proc->num, head->prog_name);
+		procs = procs->next;
+	}
+}
 
 void	ft_vomit_data(t_vm *data)
 {

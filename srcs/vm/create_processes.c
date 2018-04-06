@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:08:30 by                   #+#    #+#             */
-/*   Updated: 2018/04/06 18:20:40 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/06 19:23:33 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_get_header_number(t_vm *data, int players, t_proc *process)
 	list = ft_lst_at(list, data->nb_players - (players));
 	if (list != NULL)
 		process->header = (header_t*)list->content;
-	process->pc = (((MEM_SIZE / data->nb_players) * (players - 1)) % MEM_SIZE);
+	process->pc = (((data->nb_players - process->player) *
+				(MEM_SIZE / data->nb_players)) % MEM_SIZE);
 }
 
 void	ft_find_header_pnum(t_vm *data, int pnum)
@@ -74,7 +75,7 @@ void	ft_create_processes(t_vm *data)
 	{
 		if (data->players[i][0] != 0)
 		{
-			if (!(data->processes = ft_add_process(data->processes, i + 1)))
+			if (!(data->processes = ft_add_process(data->processes, (i + 1))))
 				exit_error(ERR_MALLOC, NULL);
 			else
 				ft_find_header_pnum(data, i);

@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by                   #+#    #+#             */
-/*   Updated: 2018/04/05 16:35:43 by                  ###   ########.fr       */
+/*   Updated: 2018/04/06 18:57:48 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 	int			psize;
 	header_t	*header;
 
-	while (lst && lst->next != NULL)
-		lst = lst->next;
+//	while (lst && lst->next != NULL)
+//		lst = lst->next;
 	header = (header_t*)lst->content;
 	psize = (int)header->prog_size;
 	if ((r = read(fd, player, psize)) == -1)
@@ -48,7 +48,7 @@ static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 		exit_error("Champ too big in ", data->players[pnum]);
 	if (!(new = ft_lstnew(((void*)header), sizeof(header_t))))
 		exit_error(ERR_MALLOC, NULL);
-	ft_lstadd_end(&(data->headers), new);
+	ft_lstadd(&(data->headers), new);
 }
 
 void		ft_parse_champs(t_vm *data)

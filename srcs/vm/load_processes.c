@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:11:36 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 17:49:09 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/06 19:07:36 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_herald(t_vm *data, t_list *lstproc)
 				process->num, head->prog_size, head->prog_name, head->comment);
 		lstproc = lstproc->next;
 	}
+	ft_herald_debug(data, data->processes);
 }
 
 void	ft_copy_champs(t_vm	*data, t_list *listheaders)
@@ -33,9 +34,9 @@ void	ft_copy_champs(t_vm	*data, t_list *listheaders)
 	int			ram_index;
 	header_t	*header;
 
-	i = -1;
+	i = MAX_PLAYERS;
 	ram_index = 0;
-	while (++i < MAX_PLAYERS)
+	while (--i >= 0)
 	{
 		if (data->players[i][0] != 0)
 		{

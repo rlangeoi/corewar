@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 18:19:49 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/06 19:10:42 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void				print_usage(void);
 void				ft_vomit_data(t_vm *data);
 void				ft_print_headers(t_vm *data);
 void				ft_something_something(t_vm *data);
+void				ft_herald_debug(t_vm *data, t_list *procs);
 
 #endif
