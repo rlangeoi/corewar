@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_champs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/01 18:32:26 by                   #+#    #+#             */
-/*   Updated: 2018/04/06 18:57:48 by rlangeoi         ###   ########.fr       */
+/*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
+/*   Updated: 2018/04/06 19:52:31 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 {
-	int 		r;
+	int			r;
 	int			psize;
 	header_t	*header;
 
-//	while (lst && lst->next != NULL)
-//		lst = lst->next;
 	header = (header_t*)lst->content;
 	psize = (int)header->prog_size;
 	if ((r = read(fd, player, psize)) == -1)
@@ -43,7 +41,8 @@ static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 		exit_error(ERR_HEADER, header->prog_name);
 	header->magic = switch_endianness(header->magic);
 	header->prog_size = switch_endianness(header->prog_size);
-	ft_printf("i:%d, sizeof:%d, magic:%d, corewarmagic:%d\n", i, sizeof(header_t), header->magic, COREWAR_EXEC_MAGIC);
+	ft_printf("i:%d, sizeof:%d, magic:%d, corewarmagic:%d\n", i,
+			sizeof(header_t), header->magic, COREWAR_EXEC_MAGIC);
 	if (header->prog_size > CHAMP_MAX_SIZE)
 		exit_error("Champ too big in ", data->players[pnum]);
 	if (!(new = ft_lstnew(((void*)header), sizeof(header_t))))

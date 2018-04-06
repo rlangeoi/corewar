@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:11:36 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 19:07:36 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/06 19:56:02 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_herald(t_vm *data, t_list *lstproc)
 {
 	t_proc		*process;
 	header_t	*head;
-	ft_printf("Ave caesar\n");
+
+	ft_printf("Introducing contestants...\n");
 	while (lstproc)
 	{
 		process = lstproc->content;
@@ -28,9 +29,9 @@ void	ft_herald(t_vm *data, t_list *lstproc)
 	ft_herald_debug(data, data->processes);
 }
 
-void	ft_copy_champs(t_vm	*data, t_list *listheaders)
+void	ft_copy_champs(t_vm *data, t_list *listheaders)
 {
-	int 		i;
+	int			i;
 	int			ram_index;
 	header_t	*header;
 
@@ -43,10 +44,11 @@ void	ft_copy_champs(t_vm	*data, t_list *listheaders)
 			if (listheaders == NULL)
 				exit_error(ERR_UNKNOWN, NULL);
 			header = (header_t*)listheaders->content;
-			ft_memcpy(&data->ram[ram_index], data->players[i], 
+			ft_memcpy(&data->ram[ram_index], data->players[i],
 					(size_t)header->prog_size);
 			listheaders = listheaders->next;
-			ram_index = ((ram_index + (MEM_SIZE / data->nb_players)) % MEM_SIZE);
+			ram_index = ((ram_index + (MEM_SIZE / data->nb_players))
+					% MEM_SIZE);
 		}
 	}
 	data->nb_proc = data->nb_players;

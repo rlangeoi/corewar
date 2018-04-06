@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/01 19:55:05 by                   #+#    #+#             */
-/*   Updated: 2018/04/05 18:57:39 by                  ###   ########.fr       */
+/*   Created: 2018/04/01 19:55:05 by rlangeoi          #+#    #+#             */
+/*   Updated: 2018/04/06 19:59:20 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void			reg_write_int(char *reg, int value)
-{
-	
-}
+#include "../../includes/vm.h"
 
 unsigned int	switch_endianness(unsigned int bytes)
 {

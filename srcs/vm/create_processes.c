@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_processes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/05 18:08:30 by                   #+#    #+#             */
-/*   Updated: 2018/04/06 19:23:33 by rlangeoi         ###   ########.fr       */
+/*   Created: 2018/04/05 18:08:30 by rlangeoi          #+#    #+#             */
+/*   Updated: 2018/04/06 19:54:14 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_proc	*ft_get_proc_pnum(t_vm *data, int pnum)
 {
 	t_proc	*process;
 	t_list	*list;
-	
+
 	list = data->processes;
 	if (list)
 		process = (t_proc*)list->content;
@@ -62,7 +62,8 @@ void	ft_find_header_pnum(t_vm *data, int pnum)
 		if (data->players[i][0] != 0)
 			players++;
 		if (i == pnum)
-			ft_get_header_number(data, players, (t_proc*)data->processes->content);
+			ft_get_header_number(data, players,
+					(t_proc*)data->processes->content);
 	}
 }
 
