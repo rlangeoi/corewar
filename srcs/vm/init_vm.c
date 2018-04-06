@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/05 18:47:44 by                  ###   ########.fr       */
+/*   Updated: 2018/04/06 18:20:58 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@ static t_proc	*ft_mkproc(int pnum)
 
 	if (!(the_process = (t_proc*)malloc(sizeof(t_proc))))
 		return (NULL);
-	the_process->player = pnum;
-	reg[0] = (char)pnum;
+	the_process->num = pnum;
+	the_process->player = 0;
 	the_process->instruction = 0;
 	the_process->ocp = 0;
+	the_process->pc2 = 0;
+	the_process->header = NULL;
+	the_process->pc = 0;
 	ft_bzero(&the_process->reg[1], (REG_SIZE * REG_NUMBER) - 1);
-	ft_bzero(&the_process->pc[0], REG_SIZE);
 	ft_bzero(&the_process->param[0], sizeof(int) * 3);
 	ft_bzero(&the_process->arg_type[0], (sizeof(t_arg_type) * 3));
+	the_process->reg[REG_SIZE - 1] = (char)pnum;
 	return (the_process);
 }
 
@@ -34,14 +37,14 @@ t_list			*ft_add_process(t_list *processes, int pnum)
 	t_list	*new;
 	t_proc	*process;
 
-	if (!(process = ft_mkproc()))
+	if (!(process = ft_mkproc(pnum)))
 		return (NULL);
 	if (!(new = (t_list*)ft_lstnew((void*)process, (sizeof(t_proc)))))
 		return (NULL);
 	if (processes == NULL)
 		return (new);
 	else
-		processes = ft_lstadd(&processes, new);
+		ft_lstadd(&processes, new);
 	return (processes);
 }
 

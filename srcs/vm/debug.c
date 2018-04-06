@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 15:04:49 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/05 16:54:08 by                  ###   ########.fr       */
+/*   Updated: 2018/04/06 17:06:42 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ void	ft_vomit_data(t_vm *data)
 	while (++i < 4)
 	{
 		ft_printf("Player #%d : %s\n", i + 1, data->players[i]);
+	}
+}
+
+void	ft_something_something(t_vm *data)
+{
+	int i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		if (data->ram[i] == 0)
+			write(1,"0",1);
+		else
+			write(1,"1",1);
+		if (i % 2 != 0)
+			write (1, " ", 1);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/05 18:39:26 by                  ###   ########.fr       */
+/*   Updated: 2018/04/06 18:19:49 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define	ERR_PNUM	"Invalid player number"
 # define	ERR_HEADER	"Invalid header "
 # define	ERR_SIZE	"Program size does not match header"
+# define	ERR_UNKNOWN	"Unknown error happened. Exiting"
 # define	NO_FLAG		0
 # define	FLAG_AFF	1
 # define	FLAG_CURSES	2
@@ -35,8 +36,8 @@
 typedef struct		s_proc
 {
 	char			reg[REG_SIZE * REG_NUMBER];
-	char			pc[REG_SIZE];
 	char			player;
+	char			num;
 	int				param[3];
 	t_arg_type		arg_type[3];
 	char			instruction;
@@ -47,6 +48,7 @@ typedef struct		s_proc
 	int				ocp;
 	int				carry;
 	int				live;
+	header_t		*header;
 }					t_proc;
 
 typedef struct		s_vm
@@ -59,6 +61,7 @@ typedef struct		s_vm
 	char			players[MAX_PLAYERS][CHAMP_MAX_SIZE];
 	t_list			*headers;
 	int				cycles;
+	int				nb_proc;
 	int				players_alive;
 	int				cycle_reduction;
 	int				dump;
@@ -67,10 +70,16 @@ typedef struct		s_vm
 }					t_vm;
 
 void				ft_init_vm(t_vm *data);
-t_list				*ft_add_process(t_list *processes);
+t_list				*ft_add_process(t_list *processes, int pnum);
+void				ft_create_processes(t_vm *data);
+void				ft_find_header_pnum(t_vm *data, int pnum);
+void				ft_get_header_number(t_vm *data, int players, t_proc *processes);
+t_proc				*ft_get_proc_pnum(t_vm *data, int pnum);
 void				ft_parse_arguments(int argc, char **argv, t_vm *data);
 void				ft_parse_champs(t_vm *data);
+void				ft_copy_champs(t_vm *data, t_list *listheaders);
 int					ft_check_data(t_vm *data);
+void				ft_herald(t_vm *data, t_list *lstproc);
 unsigned int		ft_check_endianness(t_vm *data);
 unsigned int		switch_endianness(unsigned int bytes);
 void				exit_error(char *error, char *file);
@@ -78,5 +87,6 @@ void				print_usage(void);
 
 void				ft_vomit_data(t_vm *data);
 void				ft_print_headers(t_vm *data);
+void				ft_something_something(t_vm *data);
 
 #endif
