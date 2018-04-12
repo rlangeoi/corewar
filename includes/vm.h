@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/08 19:48:14 by                  ###   ########.fr       */
+/*   Updated: 2018/04/12 17:23:31 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define	REDUCED_CTD(data)		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reductions))
-# define	CYCLE_TO_CHECK(data)	(data->cycles % REDUCED_CTD)
+# define	REDUCED_CTD(data)		(CYCLE_TO_DIE -\
+		(CYCLE_DELTA * data->cycle_reduction))
+# define	CYCLE_TO_CHECK(data)	(data->cycles %\
+		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reduction)))
+# define	LAB_SIZE	op_tab[(int)process->opcode].label_size ? 2 : 4;i
 # define	ERR_READ	"Can't read source file "
 # define	ERR_MALLOC	"Couldn't allocate memory"
 # define	ERR_DUMP	"Dump and verbose values cannot be negative"
@@ -67,6 +70,7 @@ typedef struct		s_vm
 	int				cycle_reduction;
 	int				dump;
 	int				checks;
+	int				live;
 	void			(*f[16])(struct s_vm *, t_proc *);
 }					t_vm;
 
@@ -86,6 +90,7 @@ void				ft_process(t_vm *data, t_proc *process);
 void				ft_parse_instruction(t_vm *data, t_proc *process);
 unsigned int		ft_check_endianness(t_vm *data);
 unsigned int		switch_endianness(unsigned int bytes);
+int					ft_ramcpy(t_vm *data, int size, int pc);
 void				exit_error(char *error, char *file);
 void				print_usage(void);
 

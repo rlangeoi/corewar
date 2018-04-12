@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:08:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/08 19:47:57 by                  ###   ########.fr       */
+/*   Updated: 2018/04/12 16:56:08 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,21 @@ t_proc	*ft_get_proc_pnum(t_vm *data, int pnum)
 
 	list = data->processes;
 	if (list)
-		process = (t_proc*)list->content;
-	if (process)
 	{
-		while (process->num != pnum)
+		process = (t_proc*)list->content;
+		if (process)
 		{
-			if (list)
-				list = list->next;
-			if (list)
-				process = (t_proc*)list->content;
-			if (!(process))
-				return (NULL);
+			while (process->num != pnum)
+			{
+				if (list)
+					list = list->next;
+				if (list)
+					process = (t_proc*)list->content;
+				if (!(process))
+					return (NULL);
+			}
+			return (process);
 		}
-		return (process);
 	}
 	return (NULL);
 }

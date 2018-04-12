@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 14:56:35 by                   #+#    #+#             */
-/*   Updated: 2018/04/12 11:39:34 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/12 17:22:39 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ static void		ft_args_cpy(t_vm *data, t_proc *process)
 	int	i;
 
 	i = -1;
-	while (++i < op_tab[process->opcode].ac)
+	while (++i < op_tab[(int)process->opcode].ac)
 	{
 		if (process->arg_type[i] == 2 &&
-				op_tab[process->opcode].label_size == 0)
+				op_tab[(int)process->opcode].label_size == 0)
 		{
 			process->param[i] = ft_ramcpy(data, 4, process->pc2);
 			process->pc2 = process->pc2 + 4;
 		}
 		else if (process->arg_type[i] == 1)
 		{
-			process->param[i] = ft_ramcpy[i](data, 1, process->pc2);
+			process->param[i] = ft_ramcpy(data, 1, process->pc2);
 			(process->pc2)++;
 		}
 		else
 		{
-			process->param[i] = ft_load(data, 2, process->pc2);
+			process->param[i] = ft_ramcpy(data, 2, process->pc2);
 			process->pc2 = process->pc2 + 2;
 		}
 	}
@@ -43,7 +43,7 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 	int ret;
 
 	process->pc2 = process->pc + 1;
-	if (op_tab[process->opcode].ocp)
+	if (op_tab[(int)process->opcode].ocp)
 	{
 		if ((ret = ft_get_ocp(data, process)))
 			return (ret);
@@ -51,9 +51,8 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 	else
 	{
 		process->param[0] = ft_ramcpy(data,
-				LAB_SIZE(op_tab[process->opcode].label_size), process->pc2);
-		process->pc2 = process->pc2 +
-			LAB_SIZE(op_tab[process->opcode].label_size, process->pc2);
+				LAB_SIZE, process->pc2);
+		process->pc2 = process->pc2 + LAB_SIZE;
 		return (0);
 	}
 	process->pc2++;

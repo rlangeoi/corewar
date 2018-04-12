@@ -6,37 +6,29 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 19:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 13:05:38 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/12 17:05:11 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void			ft_lstrmone(t_list **alst, t_list *prev, void *content,
-		size_t content_size)
+int				ft_ramcpy(t_vm *data, int size, int pc)
 {
-	if (*alst)
-	{
-		if (prev)
-			prev->next = (*alst)->next;
-		ft_lstdelone(alst, ft_list_delcontent(content, content_size));
-	}
-}
+	int	arg;
 
-void			ft_list_delcontent(void *content, size_t content_size)
-{
-	size_t			i;
-	unsigned char	*mem;
-
-	i = content_size;
-	if (content)
+	arg = 0;
+	if (size == 1)
+		arg = data->ram[pc % MEM_SIZE];
+	else if (size == 2)
 	{
-		mem = (unsigned char*)content;
-		while (--i && mem)
-			free(&mem[i]);
-		if (i == 0)
-			free(&mem[i]);
+		arg = data->ram[(pc + 1) % MEM_SIZE];
+		arg |= data->ram[pc % MEM_SIZE];
 	}
+	else
+	{
+		arg = switch_endianness((unsigned int)(data->ram[pc % MEM_SIZE]));
+	}
+	return (arg);
 }
 
 unsigned int	switch_endianness(unsigned int bytes)

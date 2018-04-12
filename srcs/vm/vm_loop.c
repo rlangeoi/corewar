@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 12:14:47 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/12 16:53:56 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 static void	ft_check_alive(t_vm *data, t_list *processes)
 {
+	t_list	*prev;
+	t_proc	*process;
+
+	prev = NULL;
 	while (processes)
 	{
-		if (!ft_is_alive(processes))
+		process = (t_proc*)processes->content;
+		if (process->live_at_cycle > CYCLE_TO_CHECK(data))
+			ft_lstrm(&processes, prev);
+		else
 		{
-
+			prev = processes;
+			processes = processes->next;
 		}
 	}	
 }
