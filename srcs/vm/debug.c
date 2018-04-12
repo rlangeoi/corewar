@@ -6,14 +6,14 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 15:04:49 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 19:57:51 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/08 19:43:31 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 #include <stdio.h>
 
-void	ft_herald_debug(t_vm *data, t_list *procs)
+void	ft_herald_debug(t_list *procs)
 {
 	header_t	*head;
 	t_proc		*proc;

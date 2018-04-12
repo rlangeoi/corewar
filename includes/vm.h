@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 19:10:42 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/08 19:48:14 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ typedef struct		s_proc
 	char			num;
 	int				param[3];
 	t_arg_type		arg_type[3];
-	char			instruction;
+	char			opcode;
 	int				pc;
 	int				pc2;
 	int				at_cycle;
 	int				live_at_cycle;
+	int				duration;
 	int				ocp;
 	int				carry;
 	int				live;
@@ -80,6 +81,9 @@ void				ft_parse_champs(t_vm *data);
 void				ft_copy_champs(t_vm *data, t_list *listheaders);
 int					ft_check_data(t_vm *data);
 void				ft_herald(t_vm *data, t_list *lstproc);
+void				ft_vm_loop(t_vm *data, t_list *processes);
+void				ft_process(t_vm *data, t_proc *process);
+void				ft_parse_instruction(t_vm *data, t_proc *process);
 unsigned int		ft_check_endianness(t_vm *data);
 unsigned int		switch_endianness(unsigned int bytes);
 void				exit_error(char *error, char *file);
@@ -88,6 +92,6 @@ void				print_usage(void);
 void				ft_vomit_data(t_vm *data);
 void				ft_print_headers(t_vm *data);
 void				ft_something_something(t_vm *data);
-void				ft_herald_debug(t_vm *data, t_list *procs);
+void				ft_herald_debug(t_list *procs);
 
 #endif

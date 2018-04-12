@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:11:36 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 19:56:02 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/08 19:46:45 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_herald(t_vm *data, t_list *lstproc)
 				process->num, head->prog_size, head->prog_name, head->comment);
 		lstproc = lstproc->next;
 	}
-	ft_herald_debug(data, data->processes);
+	ft_herald_debug(data->processes);
 }
 
 void	ft_copy_champs(t_vm *data, t_list *listheaders)

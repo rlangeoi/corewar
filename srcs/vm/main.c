@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:27:42 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 17:51:46 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/08 19:46:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	main(int argc, char **argv)
 		ft_copy_champs(&data, data.headers);
 		ft_something_something(&data);
 		ft_herald(&data, data.processes);
+		ft_vm_loop(&data, data.processes);
 	}
 }

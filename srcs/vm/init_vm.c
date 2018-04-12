@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 18:20:58 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/08 19:58:13 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_proc	*ft_mkproc(int pnum)
 		return (NULL);
 	the_process->num = pnum;
 	the_process->player = 0;
-	the_process->instruction = 0;
+	the_process->opcode = -1;
 	the_process->ocp = 0;
 	the_process->pc2 = 0;
 	the_process->header = NULL;
