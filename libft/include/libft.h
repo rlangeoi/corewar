@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 20:55:51 by rlangeoi          #+#    #+#             */
-/*   Updated: 2017/11/01 16:37:02 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/12 16:02:18 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_list				*ft_lstend(t_list *alst);
 size_t				ft_lstsize(t_list *alst);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lst_at(t_list *alst, unsigned int n);
+void				ft_lstrm(t_list **alst, t_list *prev);
 int					ft_power(int nb, int power);
 int					ft_sqrt(int nb);
 char				*ft_strlower(char *str);

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 17:01:10 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/13 17:35:34 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static t_proc	*ft_mkproc(int pnum)
 	the_process->player = 0;
 	the_process->opcode = -1;
 	the_process->ocp = 0;
-	the_process->pc2 = 0;
+	the_process->reader = 0;
 	the_process->header = NULL;
 	the_process->pc = 0;
-	ft_bzero(&the_process->reg[1], (REG_SIZE * REG_NUMBER) - 1);
-	ft_bzero(&the_process->param[0], sizeof(int) * 3);
+	ft_bzero(&the_process->reg[0], (REG_SIZE * REG_NUMBER));
+	ft_bzero(&the_process->av[0], sizeof(int) * 3);
 	ft_bzero(&the_process->arg_type[0], (sizeof(t_arg_type) * 3));
 	the_process->reg[REG_SIZE - 1] = (char)pnum;
 	return (the_process);

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 17:23:31 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/13 17:44:10 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ typedef struct		s_proc
 	char			reg[REG_SIZE * REG_NUMBER];
 	char			player;
 	char			num;
-	int				param[3];
+	int				av[3];
 	t_arg_type		arg_type[3];
 	char			opcode;
 	int				pc;
-	int				pc2;
+	int				reader;
 	int				at_cycle;
 	int				live_at_cycle;
 	int				duration;
