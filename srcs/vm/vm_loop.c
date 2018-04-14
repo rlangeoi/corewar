@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 16:53:56 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 16:39:11 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static void	ft_check_alive(t_vm *data, t_list *processes)
 	while (processes)
 	{
 		process = (t_proc*)processes->content;
-		if (process->live_at_cycle > CYCLE_TO_CHECK(data))
+		if (process->live_at_cycle > REDUCED_CTD(data))
 			ft_lstrm(&processes, prev);
 		else
 		{
 			prev = processes;
 			processes = processes->next;
 		}
+		if (!(processes))
+			data->processes = NULL;
 	}	
 }
 
@@ -36,7 +38,6 @@ static void	ft_cycles(t_vm *data)
 		data->cycles++;
 		if (CYCLE_TO_CHECK(data) == 0)
 		{
-			ft_printf("cycle_to_check 0\n");
 			ft_check_alive(data, data->processes);
 			data->checks++;
 			if (data->live >= NBR_LIVE || data->checks >= MAX_CHECKS)
@@ -61,12 +62,14 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 			ft_printf("It is now cycle%d\n",data->cycles);
 		while (processes)
 		{
-			ft_printf("Wesh\n");
 			process = (t_proc*)processes->content;
-			ft_process(data, process);
+			ft_proc(data, process);
+			process->live_at_cycle++;
 			processes = processes->next;
 		}
+		processes = data->processes;
 		ft_cycles(data);
 	}
-	//dump + debug
+	if (processes)
+		ft_dump_data(data);
 }

@@ -6,13 +6,13 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:11:36 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/08 19:46:45 by                  ###   ########.fr       */
+/*   Updated: 2018/04/14 16:42:32 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	ft_herald(t_vm *data, t_list *lstproc)
+void	ft_herald(t_list *lstproc)
 {
 	t_proc		*process;
 	header_t	*head;
@@ -26,7 +26,6 @@ void	ft_herald(t_vm *data, t_list *lstproc)
 				process->num, head->prog_size, head->prog_name, head->comment);
 		lstproc = lstproc->next;
 	}
-	ft_herald_debug(data->processes);
 }
 
 void	ft_copy_champs(t_vm *data, t_list *listheaders)

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/13 17:35:34 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 17:11:47 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static t_proc	*ft_mkproc(int pnum)
 		return (NULL);
 	the_process->num = pnum;
 	the_process->player = 0;
-	the_process->opcode = -1;
+	the_process->live_at_cycle = 0;
+	the_process->opcode = (char)-1;
 	the_process->ocp = 0;
 	the_process->reader = 0;
 	the_process->header = NULL;
@@ -57,6 +58,7 @@ void			ft_init_vm(t_vm *data)
 	data->dump = -1;
 	data->flags = NO_FLAG;
 	data->verbose = 0;
+	data->aff = 0;
 	data->cycles = 0;
 	data->players_alive = 0;
 	data->cycle_reduction = 0;

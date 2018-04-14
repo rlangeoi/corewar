@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:15:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/13 19:27:34 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 16:38:12 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ static void		ft_args_cpy(t_vm *data, t_proc *process)
 				op_tab[(int)process->opcode].label_size == 0)
 		{
 			process->av[i] = ft_ramcpy(data, 4, process->reader);
-			process->reader = process->reader + 4;
+			process->reader = (process->reader + 4) % MEM_SIZE;
 		}
 		else if (process->arg_type[i] == 1)
 		{
 			process->av[i] = ft_ramcpy(data, 1, process->reader);
-			(process->reader)++;
+			process->reader = (process->reader + 1) % MEM_SIZE;
 		}
 		else
 		{
 			process->av[i] = ft_ramcpy(data, 2, process->reader);
-			process->reader = process->reader + 2;
+			process->reader = (process->reader + 2) % MEM_SIZE;
 		}
 	}
 }
@@ -70,7 +70,7 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 {
 	int ret;
 
-	process->reader = process->pc + 1;
+	process->reader = (process->pc + 1) % MEM_SIZE;
 	if (op_tab[(int)process->opcode].ocp)
 	{
 		if ((ret = ft_arg_types(data, process)))
@@ -81,42 +81,38 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 		ret = LAB_SIZE;
 		process->av[0] = ft_ramcpy(data,
 				ret, process->reader);
-		process->reader = process->reader + ret;
+		process->reader = (process->reader + ret) % MEM_SIZE;
 		return (0);
 	}
-	process->reader++;
+	process->reader = (process->reader + 1) % MEM_SIZE;
 	ft_args_cpy(data, process);
 	return (0);
 }
 
 static void		ft_parse_instruction(t_vm *data, t_proc *process)
 {
-	if (data->ram[process->pc] >= 1 && data->ram[process->pc] <= 16)
+	if (data->ram[process->pc % MEM_SIZE] >= 1 &&
+			data->ram[process->pc % MEM_SIZE] <= 16)
 	{
-		process->opcode = data->ram[process->pc];
-		process->duration = op_tab[(int)process->opcode].cycles - 1;
-		ft_printf("Parsed mem : opcode = %d, duration = %d\n", process->opcode, process->duration);
+		process->opcode = data->ram[process->pc % MEM_SIZE];
+		process->at_cycle = op_tab[(int)process->opcode].cycles - 1;
 	}
 	else
-	{
-		ft_printf("PROUBLAIME, pc %d", process->pc);
-		process->reader = ++(process->pc);
-		ft_printf(" pc %d\n", process->pc);
-	}
+		process->reader = ++(process->pc) % MEM_SIZE;
 }
 
-void	ft_process(t_vm *data, t_proc *process)
+void	ft_proc(t_vm *data, t_proc *process)
 {
 	int ret;
 
 	if (--process->at_cycle == 0)
 	{
 		if ((ret = ft_get_args(data, process)))
-			process->pc = process->pc + ret;
+			process->pc = (process->pc + ret) % MEM_SIZE;
 		else
 		{
-		data->f[(int)process->opcode](data, process);
-		process->pc = process->reader;
+			data->f[(int)process->opcode](data, process);
+			process->pc = process->reader % MEM_SIZE;
 		}
 		process->opcode = -1;
 	}

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:14:02 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 16:01:55 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 16:34:51 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 static void	ft_lstdelcontent(void *content, size_t content_size)
 {
-	unsigned char	*mem;
-
-	mem = (unsigned char*)content;
-	if (mem)
-	{
-		mem += content_size - 1;
-		while (--content_size)
-		{
-			free(mem);
-			mem--;
-		}
-	}
+	(void)content_size;
+	if (content)
+		free(content);
 }
 
 void		ft_lstrm(t_list **alst, t_list *prev)
@@ -34,7 +25,7 @@ void		ft_lstrm(t_list **alst, t_list *prev)
 	void	(*f)(void*, size_t);
 
 	f = &ft_lstdelcontent;
-	if (*alst)
+	if (alst && *alst)
 	{
 		next = (*alst)->next;
 		if (prev)

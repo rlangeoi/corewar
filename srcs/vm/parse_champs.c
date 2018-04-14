@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 19:52:31 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 16:43:42 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 	psize = (int)header->prog_size;
 	if ((r = read(fd, player, psize)) == -1)
 		exit_error(ERR_READ, NULL);
-	ft_printf("r %d, psize %d\n", r, psize);
 	if (r != psize)
 		exit_error(ERR_SIZE, NULL);
 }
@@ -41,8 +40,6 @@ static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 		exit_error(ERR_HEADER, header->prog_name);
 	header->magic = switch_endianness(header->magic);
 	header->prog_size = switch_endianness(header->prog_size);
-	ft_printf("i:%d, sizeof:%d, magic:%d, corewarmagic:%d\n", i,
-			sizeof(header_t), header->magic, COREWAR_EXEC_MAGIC);
 	if (header->prog_size > CHAMP_MAX_SIZE)
 		exit_error("Champ too big in ", data->players[pnum]);
 	if (!(new = ft_lstnew(((void*)header), sizeof(header_t))))
@@ -58,7 +55,6 @@ void		ft_parse_champs(t_vm *data)
 	i = -1;
 	while (++i < MAX_PLAYERS)
 	{
-		ft_printf("i%d\n", i);
 		if (data->players[i][0])
 		{
 			if ((fd = open(data->players[i], O_RDONLY)) != -1)
@@ -72,5 +68,4 @@ void		ft_parse_champs(t_vm *data)
 				exit_error(ERR_READ, NULL);
 		}
 	}
-	ft_printf("byebye\n");
 }
