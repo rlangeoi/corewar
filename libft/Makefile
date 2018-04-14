@@ -161,7 +161,7 @@ $(OBJ_PATH):
 	$(SPY)mkdir $(OBJ_PATH) 2> /dev/null || true 
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC)
-#	$(SPY)$(CC) -g $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
+#	$(SPY)$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
 	$(SPY)$(CC) $(OPT) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
 
 
