@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 /*
 	Ajoute le second parametre au premier parametre. Stock l'addition des deux

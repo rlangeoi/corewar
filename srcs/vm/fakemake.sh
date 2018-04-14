@@ -12,4 +12,24 @@ gcc -Wall -Wextra -Werror -g -o corewar \
 	vm_loop.c\
 	process.c\
 	op.c\
+	add.c\
+	advance_pc.c\
+	aff.c\
+	and.c\
+	fork.c\
+	get_param.c\
+	is_reg.c\
+	ld.c\
+	ldi.c\
+	live.c\
+	lld.c\
+	lldi.c\
+	or.c\
+	parse_verbose.c\
+	st.c\
+	sti.c\
+	store.c\
+	sub.c\
+	xor.c\
+	zjmp.c\
 	../../libft/libft.a

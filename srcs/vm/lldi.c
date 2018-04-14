@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 void	lldi(t_vm *data, t_proc *process)
 {
@@ -24,7 +24,7 @@ void	lldi(t_vm *data, t_proc *process)
 		if (value[0] != -1 && value[1] != -1)
 		{
 			adress_to_load = circular_mem(PC + (value[0] + value[1]));
-			REG(2) = ft_load(data, 4, adress_to_load);
+			REG(2) = ft_ramcpy(data, 4, adress_to_load);
 			process->carry = REG(2) ? 0 : 1;
 			if (verbose_operations(data))
 			{

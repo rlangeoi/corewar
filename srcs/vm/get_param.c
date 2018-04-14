@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 int		get_param(int param_nb, t_vm *data, t_proc *process)
 {
@@ -21,7 +21,7 @@ int		get_param(int param_nb, t_vm *data, t_proc *process)
 	else if (PARAM_TYPE(param_nb) == DIR_CODE)
 		param_value = PARAM(param_nb);
 	else if (PARAM_TYPE(param_nb) == IND_CODE)
-		param_value = ft_load(data, 4, PC + PARAM(param_nb) % IDX_MOD);
+		param_value = ft_ramcpy(data, 4, PC + PARAM(param_nb) % IDX_MOD);
 	else
 		return (0);
 	return (param_value);

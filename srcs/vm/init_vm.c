@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 17:11:47 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 18:27:23 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void			ft_init_vm(t_vm *data)
 	data->processes = NULL;
 	data->checks = 0;
 	data->live = 0;
+	data->last_live = 0;
 	data->headers = NULL;
 	ft_bzero((void*)data->ram, MEM_SIZE);
 	while (++i < 4)

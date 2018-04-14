@@ -6,11 +6,11 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 10:26:16 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/14 17:06:12 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 18:11:01 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 int		circular_mem(int adress)
 {

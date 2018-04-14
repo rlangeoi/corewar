@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 void	zjmp(t_vm *data, t_proc *process)
 {
@@ -21,12 +21,12 @@ void	zjmp(t_vm *data, t_proc *process)
 	{
 		if (verbose_operations(data))
 			ft_printf(" OK\n");
-		process->pc2 = process->pc + ((short)process->param[0] % IDX_MOD);
-		process->pc2 %= MEM_SIZE;
+		process->reader = process->pc + ((short)process->av[0] % IDX_MOD);
+		process->reader %= MEM_SIZE;
 	}
 	else
 	{
-		process->pc2 = (process->pc + 3) % MEM_SIZE;
+		process->reader = (process->pc + 3) % MEM_SIZE;
 		if (verbose_operations(data))
 			ft_printf(" FAILED\n");
 		advance_pc(data, process);
@@ -42,6 +42,6 @@ void	zjmp(t_vm *data, t_proc *process)
 	data = PARAM(0) %= IDX_MOD;
 	if (process->carry == 0)
 		advance_pc(data, process);
-	process->pc2 = (process->carry == 1) ? (short)(process->pc + data) % MEM_SIZE : (process->pc + 3) % MEM_SIZE;
+	process->reader = (process->carry == 1) ? (short)(process->pc + data) % MEM_SIZE : (process->pc + 3) % MEM_SIZE;
 }
 */

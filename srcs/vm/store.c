@@ -6,12 +6,12 @@
 /*   By: lgosse <lgosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 13:48:14 by lgosse            #+#    #+#             */
-/*   Updated: 2018/04/06 18:04:01 by gavizet          ###   ########.fr       */
+/*   Updated: 2018/04/14 18:02:57 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vm.h>
-
+#include "../../includes/vm.h"
+/*
 void	ft_graphic_handle(t_vm *data, int adress)
 {
 	int		idx;
@@ -33,7 +33,7 @@ void	ft_graphic_handle(t_vm *data, int adress)
 		idx++;
 	}
 }
-
+*/
 void	store_reg(t_vm *data, int adress, int reg_val)
 {
 	MEMORY(adress + 3) = reg_val;

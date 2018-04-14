@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 16:39:11 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/14 18:08:24 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 		while (processes)
 		{
 			process = (t_proc*)processes->content;
-			ft_proc(data, process);
+			ft_process(data, process);
 			process->live_at_cycle++;
 			processes = processes->next;
 		}
