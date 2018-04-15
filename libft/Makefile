@@ -102,6 +102,8 @@ SRC_NAME	= ft_atoi.c\
 	  ft_lstadd_end.c\
 	  ft_lst_at.c\
 	  ft_lstrm.c\
+	  ft_lstrm_at.c\
+	  ft_lstdelcontent.c\
 	  ft_power.c\
 	  ft_sqrt.c\
 	  ft_strlower.c\

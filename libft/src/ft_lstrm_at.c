@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   ft_lstrm_at.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 17:10:12 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/15 18:33:21 by rlangeoi         ###   ########.fr       */
+/*   Created: 2018/04/15 19:46:07 by rlangeoi          #+#    #+#             */
+/*   Updated: 2018/04/15 19:54:41 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/vm.h"
+#include "../include/libft.h"
 
-void	ft_aff(t_vm *data, t_proc *process)
+void		ft_lstrm_at(t_list **alst, int nb)
 {
-	int	character;
+	t_list	*cur;
+	t_list	*prev;
+	int i;
 
-	if (is_reg(process, 0) && data->aff)
+	i = 0;
+	cur = (*alst);
+	prev = NULL;
+	while (++i < nb && cur)
 	{
-		character = REG(0) % 256;
-		ft_printf("Aff : %c\n", (char)character);
-		process->carry = character ? 0 : 1;
+		prev = cur;
+		cur = cur->next;
 	}
-	advance_pc(data, process);
+	if (cur)
+	{
+		if (prev)
+			prev->next = cur->next;
+		else if (nb == 1)
+			(*alst) = cur->next;
+		ft_lstdelone(&cur, &ft_lstdelcontent);
+	}
 }

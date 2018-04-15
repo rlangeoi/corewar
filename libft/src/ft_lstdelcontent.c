@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   ft_lstdelcontent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 17:10:12 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/15 18:33:21 by rlangeoi         ###   ########.fr       */
+/*   Created: 2018/04/15 19:54:19 by rlangeoi          #+#    #+#             */
+/*   Updated: 2018/04/15 19:57:34 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/vm.h"
+#include "../include/libft.h"
 
-void	ft_aff(t_vm *data, t_proc *process)
+void	ft_lstdelcontent(void *content, size_t content_size)
 {
-	int	character;
-
-	if (is_reg(process, 0) && data->aff)
-	{
-		character = REG(0) % 256;
-		ft_printf("Aff : %c\n", (char)character);
-		process->carry = character ? 0 : 1;
-	}
-	advance_pc(data, process);
+	(void)content_size;
+	if (content)
+		free(content);
 }

@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 09:19:49 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/06 16:46:11 by gavizet          ###   ########.fr       */
+/*   Updated: 2018/04/15 18:52:52 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	zjmp(t_vm *data, t_proc *process)
+void	ft_zjmp(t_vm *data, t_proc *process)
 {
 	//ft_printf("zjmp : carry = [%d]\n", process->carry);
 	if (verbose_operations(data))

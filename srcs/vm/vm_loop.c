@@ -6,31 +6,28 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 18:08:24 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 20:18:26 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-static void	ft_check_alive(t_vm *data, t_list *processes)
+static void	ft_check_alive(t_vm	*data)
 {
-	t_list	*prev;
 	t_proc	*process;
+	t_list	*cur;
+	int		i;
 
-	prev = NULL;
-	while (processes)
+	i = 0;
+	cur = data->processes;
+	while (cur)
 	{
-		process = (t_proc*)processes->content;
+		i++;
+		process = (t_proc*)cur->content;
+		cur = cur->next;
 		if (process->live_at_cycle > REDUCED_CTD(data))
-			ft_lstrm(&processes, prev);
-		else
-		{
-			prev = processes;
-			processes = processes->next;
-		}
-		if (!(processes))
-			data->processes = NULL;
-	}	
+			ft_lstrm_at(&(data->processes), i);
+	}
 }
 
 static void	ft_cycles(t_vm *data)
@@ -38,7 +35,7 @@ static void	ft_cycles(t_vm *data)
 		data->cycles++;
 		if (CYCLE_TO_CHECK(data) == 0)
 		{
-			ft_check_alive(data, data->processes);
+			ft_check_alive(data);
 			data->checks++;
 			if (data->live >= NBR_LIVE || data->checks >= MAX_CHECKS)
 			{
@@ -59,7 +56,7 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 	while ((data->cycles <= data->dump || data->dump < 0) && processes)
 	{
 		if (data->verbose)
-			ft_printf("It is now cycle%d\n",data->cycles);
+			ft_printf("It is now cycle %d\n",data->cycles);
 		while (processes)
 		{
 			process = (t_proc*)processes->content;
@@ -67,8 +64,8 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 			process->live_at_cycle++;
 			processes = processes->next;
 		}
-		processes = data->processes;
 		ft_cycles(data);
+		processes = data->processes;
 	}
 	if (processes)
 		ft_dump_data(data);

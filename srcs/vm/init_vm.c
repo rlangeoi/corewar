@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 18:27:23 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:32:45 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,24 @@ void			ft_init_vm(t_vm *data)
 	ft_bzero((void*)data->ram, MEM_SIZE);
 	while (++i < 4)
 		ft_bzero((void*)data->players[i], CHAMP_MAX_SIZE);
+}
+
+void			ft_init_instructions(t_vm *data)
+{
+	data->f[0] = ft_live;
+	data->f[1] = ft_ld;
+	data->f[2] = ft_st;
+	data->f[3] = ft_add;
+	data->f[4] = ft_sub;
+	data->f[5] = ft_and;
+	data->f[6] = ft_or;
+	data->f[7] = ft_xor;
+	data->f[8] = ft_zjmp;
+	data->f[9] = ft_ldi;
+	data->f[10] = ft_sti;
+	data->f[11] = ft_fork;
+	data->f[12] = ft_lld;
+	data->f[13] = ft_lldi;
+	data->f[14] = ft_lfork;
+	data->f[15] = ft_aff;
 }

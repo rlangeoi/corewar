@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 13:22:16 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/06 11:23:42 by gavizet          ###   ########.fr       */
+/*   Updated: 2018/04/15 18:55:39 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 	passe a 1, sinon a 0. Prend 10 cycles  s'executer.
 */
 
-void	sub(t_vm *data, t_proc *process)
+void	ft_sub(t_vm *data, t_proc *process)
 {
 		if (is_reg(process, 0) && is_reg(process, 1) && is_reg(process, 2))
 		{

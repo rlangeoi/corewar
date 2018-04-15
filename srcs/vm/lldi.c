@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:03:55 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/04 17:09:42 by gavizet          ###   ########.fr       */
+/*   Updated: 2018/04/15 18:55:04 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	lldi(t_vm *data, t_proc *process)
+void	ft_lldi(t_vm *data, t_proc *process)
 {
 	int	value[2];
 	int	adress_to_load;

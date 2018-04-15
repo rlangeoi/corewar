@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 13:25:42 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/14 18:08:55 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:54:24 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	ld(t_vm *data, t_proc *process)
+void	ft_ld(t_vm *data, t_proc *process)
 {
 	int	address;
 

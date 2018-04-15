@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 13:04:54 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/14 18:09:12 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:33:07 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	and(t_vm *data, t_proc *process)
+void	ft_and(t_vm *data, t_proc *process)
 {
 	int param_value[2];
 

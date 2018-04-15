@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:15:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 16:38:12 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:30:25 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void		ft_parse_instruction(t_vm *data, t_proc *process)
 		process->reader = ++(process->pc) % MEM_SIZE;
 }
 
-void	ft_proc(t_vm *data, t_proc *process)
+void	ft_process(t_vm *data, t_proc *process)
 {
 	int ret;
 

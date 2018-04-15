@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 19:14:18 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:54:01 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int					ft_ramcpy(t_vm *data, int size, int pc);
 void				exit_error(char *error, char *file);
 void				print_usage(void);
 void				ft_dump_data(t_vm *data);
-void				ft_init_fake_instructions(t_vm *data);
+void				ft_init_instructions(t_vm *data);
 int					advance_pc(t_vm *data, t_proc *process);
 int					verbose_operations(t_vm *data);
 int					is_reg(t_proc *process, int nb_param);
@@ -112,6 +112,24 @@ int					get_param(int param_nb, t_vm *data, t_proc *process);
 int					circular_mem(int address);
 void				store_reg(t_vm *data, int address, int reg_val);
 int					verbose_pc(t_vm *data);
+int					verbose_live(t_vm *data);
+
+void				ft_add(t_vm *data, t_proc *process);
+void				ft_aff(t_vm *data, t_proc *process);
+void				ft_and(t_vm *data, t_proc *process);
+void				ft_fork(t_vm *data, t_proc *process);
+void				ft_lfork(t_vm *data, t_proc *process);
+void				ft_ld(t_vm *data, t_proc *process);
+void				ft_ldi(t_vm *data, t_proc *process);
+void				ft_live(t_vm *data, t_proc *process);
+void				ft_lld(t_vm *data, t_proc *process);
+void				ft_lldi(t_vm *data, t_proc *process);
+void				ft_or(t_vm *data, t_proc *process);
+void				ft_st(t_vm *data, t_proc *process);
+void				ft_sti(t_vm *data, t_proc *process);
+void				ft_sub(t_vm *data, t_proc *process);
+void				ft_xor(t_vm *data, t_proc *process);
+void				ft_zjmp(t_vm *data, t_proc *process);
 
 void				ft_vomit_data(t_vm *data);
 void				ft_print_headers(t_vm *data);

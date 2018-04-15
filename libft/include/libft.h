@@ -6,12 +6,14 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 20:55:51 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 16:02:18 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 19:56:14 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# define ABS(X)	(X >= 0 ? X : X * -1)
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -93,11 +95,13 @@ size_t				ft_lstsize(t_list *alst);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lst_at(t_list *alst, unsigned int n);
 void				ft_lstrm(t_list **alst, t_list *prev);
+void				ft_lstrm_at(t_list **alst, int nb);
+void				ft_lstdelcontent(void *content, size_t content_size);
+t_list				*ft_lstadd_end(t_list **alst, t_list *new);
 int					ft_power(int nb, int power);
 int					ft_sqrt(int nb);
 char				*ft_strlower(char *str);
 char				*ft_strupper(char *str);
-t_list				*ft_lstadd_end(t_list **alst, t_list *new);
 int					ft_words(const char *str, char c);
 long long			ft_atoi_base(const char *s, unsigned int b);
 char				*ft_itoa_base(unsigned long long n, unsigned int b, int m);

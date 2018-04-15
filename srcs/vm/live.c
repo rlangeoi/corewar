@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 09:27:20 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/14 18:57:45 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:59:06 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*get_player(t_vm *data, int nb_champ)
 {
 	t_list		*champs;
 	t_proc		*process;
-	header_t	*header;
 
 	champs = data->processes;
 	while (champs)
@@ -24,28 +23,29 @@ char	*get_player(t_vm *data, int nb_champ)
 		process = champs->content;
 		if (nb_champ == process->player)
 		{
-			process->nb_live++;
-			return (process->header.prog_name);
+	//		process->nb_live++;
+			process->live_at_cycle = 0;
+			return (process->header->prog_name);
 		}
 		champs = champs->next;
 	}
 	return (NULL);
 }
 
-void	live(t_vm *data, t_proc *process)
+void	ft_live(t_vm *data, t_proc *process)
 {
 	char	*player;
 
 	if (verbose_operations(data))
 		ft_printf("P% 5d | live %d\n", ID, PARAM(0));
-	process->live_at_cycle = 0;
 	data->live++;
+	process->live_at_cycle = 0;
 	player = get_player(data, PARAM(0));
 	if (player)
 	{
 		data->last_live = PARAM(0);
 		if (verbose_live(data))
-			ft_printf("Player %d (%s) is said to be alive\n", ft_abs(PARAM(0)), player);
+			ft_printf("Player %d (%s) is said to be alive\n", ABS(PARAM(0)), player);
 	}
 	advance_pc(data, process);
 }

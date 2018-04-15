@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:18:27 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/04 15:38:21 by gavizet          ###   ########.fr       */
+/*   Updated: 2018/04/15 18:55:49 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	xor(t_vm *data, t_proc *process)
+void	ft_xor(t_vm *data, t_proc *process)
 {
 	int param_value[2];
 

@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:09:44 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/14 18:06:10 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/15 18:55:29 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	sti(t_vm *data, t_proc *process)
+void	ft_sti(t_vm *data, t_proc *process)
 {
 	int	value[2];
 	int	address;
