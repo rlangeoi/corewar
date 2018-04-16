@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:11:36 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 16:42:32 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/16 15:28:55 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_copy_champs(t_vm *data, t_list *listheaders)
 	ram_index = 0;
 	while (--i >= 0)
 	{
-		if (data->players[i][0] != 0)
+		if (data->pnums[i] != 0)
 		{
 			if (listheaders == NULL)
 				exit_error(ERR_UNKNOWN, NULL);

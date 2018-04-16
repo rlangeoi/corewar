@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:08:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/12 16:56:08 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/16 15:28:09 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_find_header_pnum(t_vm *data, int pnum)
 	players = 0;
 	while (++i < MAX_PLAYERS && i <= pnum)
 	{
-		if (data->players[i][0] != 0)
+		if (data->pnums[i])
 			players++;
 		if (i == pnum)
 			ft_get_header_number(data, players,
@@ -76,7 +76,7 @@ void	ft_create_processes(t_vm *data)
 	i = -1;
 	while (++i < MAX_PLAYERS)
 	{
-		if (data->players[i][0] != 0)
+		if (data->pnums[i] != 0)
 		{
 			if (!(data->processes = ft_add_process(data->processes, (i + 1))))
 				exit_error(ERR_MALLOC, NULL);

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/15 18:32:45 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/16 15:42:32 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void			ft_init_vm(t_vm *data)
 	data->last_live = 0;
 	data->headers = NULL;
 	ft_bzero((void*)data->ram, MEM_SIZE);
+	ft_bzero((void*)data->pnums, sizeof(int) * (MAX_PLAYERS + 1));
 	while (++i < 4)
 		ft_bzero((void*)data->players[i], CHAMP_MAX_SIZE);
 }

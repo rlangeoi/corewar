@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:40:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/06 19:49:55 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/16 14:49:39 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	ft_mkchamp(t_vm *data, char *arg)
 		if (data->players[i][0] == 0)
 		{
 			ft_strcpy(data->players[i], arg);
+			data->pnums[i] = 1;
 			done = 1;
 		}
 	}
@@ -75,6 +76,7 @@ static int	ft_parse_pnum(char **arg, t_vm *data, int i)
 			if (((res = ft_atoi(arg[i])) <= MAX_PLAYERS && res > 0))
 			{
 				ft_strcpy(data->players[res - 1], arg[i + 1]);
+				data->pnums[res - 1] = 1;
 				return (i + 1);
 			}
 			else

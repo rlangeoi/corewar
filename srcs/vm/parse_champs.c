@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 16:43:42 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/16 15:05:35 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,44 @@ static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 	ft_lstadd(&(data->headers), new);
 }
 
-void		ft_parse_champs(t_vm *data)
+static int	ft_count_champs(t_vm *data)
 {
-	int	i;
-	int fd;
+	int i;
 
 	i = -1;
 	while (++i < MAX_PLAYERS)
 	{
 		if (data->players[i][0])
 		{
+			if (data->pnums[i])
+				(data->pnums[MAX_PLAYERS])++;
+			else
+				return (1);
+		}
+		else if (data->pnums[i])
+			return (1);
+		i++;
+	}
+	if (data->pnums[MAX_PLAYERS] == (int)data->nb_players)
+		return (0);
+	return (1);
+}
+
+void		ft_parse_champs(t_vm *data)
+{
+	int	i;
+	int fd;
+
+	i = -1;
+	if (ft_count_champs(data))
+		exit_error("Error in champs parsing", NULL);
+	while (++i < MAX_PLAYERS)
+	{
+		if (data->pnums[i])
+		{
 			if ((fd = open(data->players[i], O_RDONLY)) != -1)
 			{
+				ft_bzero(data->players[i], CHAMP_MAX_SIZE);
 				ft_parse_headers(data, fd, i);
 				ft_parse_instructions(data->headers, data->players[i], fd);
 				if ((fd = close(fd)) == -1)

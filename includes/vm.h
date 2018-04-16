@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/15 18:54:01 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/16 14:43:08 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct		s_vm
 	unsigned char	flags;
 	t_list			*processes;
 	char			players[MAX_PLAYERS][CHAMP_MAX_SIZE];
+	int				pnums[MAX_PLAYERS + 1];
 	t_list			*headers;
 	int				cycles;
 	int				nb_proc;
