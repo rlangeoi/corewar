@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 19:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/14 16:12:04 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/18 17:43:55 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int				ft_ramcpy(t_vm *data, int size, int pc)
 	int	arg;
 
 	arg = 0;
+	while (pc < 0)
+		pc += MEM_SIZE;
 	if (size == 1)
 		arg = data->ram[pc % MEM_SIZE];
 	else if (size == 2)
@@ -46,7 +48,10 @@ int				ft_ramcpy(t_vm *data, int size, int pc)
 	}
 	else
 	{
-		arg = switch_endianness((unsigned int)(data->ram[pc % MEM_SIZE]));
+		arg = data->ram[(pc + 3) % MEM_SIZE];
+		arg |= ((data->ram[(pc + 2) % MEM_SIZE]) << 8);
+		arg |= ((data->ram[(pc + 1) % MEM_SIZE]) << 16);
+		arg |= ((data->ram[pc % MEM_SIZE]) << 24);
 	}
 	return (arg);
 }
