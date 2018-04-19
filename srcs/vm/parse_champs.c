@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/16 15:05:35 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 16:21:29 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static int	ft_count_champs(t_vm *data)
 		}
 		else if (data->pnums[i])
 			return (1);
-		i++;
 	}
 	if (data->pnums[MAX_PLAYERS] == (int)data->nb_players)
 		return (0);

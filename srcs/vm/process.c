@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:15:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/16 17:45:16 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 16:10:01 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ static int		ft_arg_types(t_vm *data, t_proc *process)
 	ret = 0;
 	while (++i < op_tab[(int)process->opcode].ac)
 	{
-		if (process->arg_type[i] == REG_CODE &&
-				op_tab[(int)process->opcode].av[i] & T_REG)
+//		process->arg_type[i] =
+//			(data->ram[process->reader % MEM_SIZE] >> (6 - (2 * i)));
+		if (process->arg_type[i] == REG_CODE)
 			adv++;
 		else if (process->arg_type[i] == DIR_CODE &&
-				op_tab[(int)process->opcode].av[i] & T_DIR)
-			adv++;
-		else if (process->arg_type[i] == IND_CODE &&
-				op_tab[(int)process->opcode].av[i] & T_IND)
-			adv++;
-		else
+				(!(op_tab[(int)process->opcode].label_size)))
+			adv = adv + DIR_SIZE;
+		else if (process->arg_type[i] == IND_CODE ||
+				(process->arg_type[i] == DIR_CODE &&
+				(op_tab[(int)process->opcode].label_size)))
+			adv = adv + IND_SIZE;
+		if ((ft_types_check(process, i)))
 			ret++;
 	}
 	return (ret ? adv : 0);
@@ -110,7 +112,11 @@ void	ft_process(t_vm *data, t_proc *process)
 	if (--process->at_cycle == 0)
 	{
 		if ((ret = ft_get_args(data, process)))
+		{
+			if (data->verbose)
+				hexdump_adv(data, process, ret);
 			process->pc = (process->pc + ret) % MEM_SIZE;
+		}
 		else
 		{
 			data->f[(int)process->opcode](data, process);

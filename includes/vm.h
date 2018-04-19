@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/18 17:48:01 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 16:10:28 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void				ft_herald(t_list *lstproc);
 void				ft_vm_loop(t_vm *data, t_list *processes);
 void				ft_process(t_vm *data, t_proc *process);
 unsigned int		ft_check_endianness(t_vm *data);
+int					ft_types_check(t_proc *process, int i);
 unsigned int		switch_endianness(unsigned int bytes);
+void				hexdump_adv(t_vm *data, t_proc *process, int adv);
 int					ft_ramcpy(t_vm *data, int size, int pc);
 void				exit_error(char *error, char *file);
 void				print_usage(void);
