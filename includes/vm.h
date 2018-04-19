@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/19 16:10:28 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:23:36 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reduction)))
 # define	LAB_SIZE	(op_tab[(int)process->opcode].label_size ? 2 : 4);
 # define	MEMORY(X)	data->ram[(unsigned int)(X) % MEM_SIZE]
-# define	ID			process->num
+# define	ID			process->player
 # define	ID1			process->num + 1
 # define	PC			process->pc
 # define	REG(x)		process->reg[process->av[(x)] - 1]

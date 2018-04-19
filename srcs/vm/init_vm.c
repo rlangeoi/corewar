@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/16 15:42:32 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:05:34 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			ft_init_vm(t_vm *data)
 	data->flags = NO_FLAG;
 	data->verbose = 0;
 	data->aff = 0;
-	data->cycles = 0;
+	data->cycles = 1;
 	data->players_alive = 0;
 	data->cycle_reduction = 0;
 	data->processes = NULL;

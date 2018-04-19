@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/18 17:16:10 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:05:26 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 	while ((data->cycles <= data->dump || data->dump < 0) && processes)
 	{
 		if (data->verbose)
-			ft_printf("It is now cycle %d\n",data->cycles + 1);
+			ft_printf("It is now cycle %d\n",data->cycles);
 		while (processes)
 		{
 			process = (t_proc*)processes->content;

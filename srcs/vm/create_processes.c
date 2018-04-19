@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:08:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/16 15:28:09 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/19 17:32:52 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,14 @@ void	ft_get_header_number(t_vm *data, int players, t_proc *process)
 
 	list = data->headers;
 	if (process != NULL)
+	{
 		process->player = (char)players;
+		process->num = (char)(data->nb_players + 1 - players);
+	}
 	list = ft_lst_at(list, data->nb_players - (players));
 	if (list != NULL)
 		process->header = (header_t*)list->content;
-	process->pc = (((data->nb_players - process->player) *
+	process->pc = (((data->nb_players - process->num) *
 				(MEM_SIZE / data->nb_players)) % MEM_SIZE);
 }
 
