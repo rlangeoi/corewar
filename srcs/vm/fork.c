@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 19:19:23 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/14 18:26:17 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 16:09:44 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void		copy_process(t_vm *data, t_proc *process, t_proc *copy)
 	copy->player = process->player;
 	copy->pc = circular_mem(PC + PARAM(0));
 	copy->num = data->nb_proc++;
+	copy->player = process->player;
 	copy->header = process->header;
 	copy->carry = process->carry;
 	copy->live_at_cycle = process->live_at_cycle;

@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 09:27:20 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/19 18:22:44 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 16:15:11 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_player(t_vm *data, int nb_champ)
 	while (champs)
 	{
 		process = champs->content;
-		if (nb_champ == process->player)
+		if (nb_champ == (-1 * process->player))
 		{
 	//		process->nb_live++;
 			process->live_at_cycle = 0;

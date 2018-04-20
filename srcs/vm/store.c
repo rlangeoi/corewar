@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgosse <lgosse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/03 13:48:14 by lgosse            #+#    #+#             */
-/*   Updated: 2018/04/14 18:02:57 by rlangeoi         ###   ########.fr       */
+/*   Created: 2018/04/20 14:07:22 by rlangeoi          #+#    #+#             */
+/*   Updated: 2018/04/20 14:18:53 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ void	ft_graphic_handle(t_vm *data, int adress)
 	}
 }
 */
-void	store_reg(t_vm *data, int adress, int reg_val)
+void	store_reg(t_vm *data, int address, int reg_val)
 {
-	MEMORY(adress + 3) = reg_val;
-	MEMORY(adress + 2) = (reg_val >> 8);
-	MEMORY(adress + 1) = (reg_val >> 16);
-	MEMORY(adress + 0) = (reg_val >> 24);
+	//reg_val--;
+	while (address < 0)
+		address = address + MEM_SIZE;
+	MEMORY(address + 3) = reg_val;
+	MEMORY(address + 2) = (reg_val >> 8);
+	MEMORY(address + 1) = (reg_val >> 16);
+	MEMORY(address + 0) = (reg_val >> 24);
 }

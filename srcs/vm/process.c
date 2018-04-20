@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:15:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/19 19:07:15 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 16:02:38 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 	{
 		ret = LAB_SIZE;
 		process->av[0] = ft_ramcpy(data,
-				4, process->reader);
+				ret, process->reader);
 		process->reader = (process->reader + ret) % MEM_SIZE;
 		return (0);
 	}

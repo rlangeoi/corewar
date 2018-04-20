@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/19 18:05:34 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 15:10:23 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_proc	*ft_mkproc(int pnum)
 	ft_bzero(&the_process->reg[0], (REG_SIZE * REG_NUMBER));
 	ft_bzero(&the_process->av[0], sizeof(int) * 3);
 	ft_bzero(&the_process->arg_type[0], (sizeof(t_arg_type) * 3));
-	the_process->reg[REG_SIZE - 1] = (char)pnum;
+	the_process->reg[0] = -1 * (char)pnum;
 	return (the_process);
 }
 
