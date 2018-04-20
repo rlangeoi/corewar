@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 18:10:47 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 19:50:39 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_check_alive(t_vm	*data)
 			if (data->verbose)
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 						process->id, process->live_at_cycle, REDUCED_CTD(data));
-			ft_lstrm_at(&(data->processes), i);
+			ft_lstrm_at(&(data->processes), i--);
 		}
 	}
 }
@@ -39,7 +39,7 @@ static void	ft_check_alive(t_vm	*data)
 static void	ft_cycles(t_vm *data)
 {
 		data->cycles++;
-		if (data->cycle_check == data->cycles - 1)
+		if (data->cycle_check <= data->cycles - 1)
 		{
 			ft_check_alive(data);
 			data->checks++;
@@ -68,8 +68,8 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 		while (processes)
 		{
 			process = (t_proc*)processes->content;
-			ft_process(data, process);
 			process->live_at_cycle++;
+			ft_process(data, process);
 			processes = processes->next;
 		}
 		ft_cycles(data);
