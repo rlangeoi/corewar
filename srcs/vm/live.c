@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 09:27:20 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/20 16:15:11 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 16:29:49 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_live(t_vm *data, t_proc *process)
 	char	*player;
 
 	if (verbose_operations(data))
-		ft_printf("P% 5d | live %d\n", process->player, PARAM(0));
+		ft_printf("P% 5d | live %d\n", ID, PARAM(0));
 	data->live++;
 	process->live_at_cycle = 0;
 	player = get_player(data, PARAM(0));

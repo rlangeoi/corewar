@@ -6,13 +6,13 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 15:41:54 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 15:10:23 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 18:03:04 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-static t_proc	*ft_mkproc(int pnum)
+static t_proc	*ft_mkproc(t_vm *data, int pnum)
 {
 	t_proc		*the_process;
 
@@ -26,6 +26,7 @@ static t_proc	*ft_mkproc(int pnum)
 	the_process->reader = 0;
 	the_process->header = NULL;
 	the_process->pc = 0;
+	the_process->id = data->nb_players - (data->nb_players - the_process->num);
 	ft_bzero(&the_process->reg[0], (REG_SIZE * REG_NUMBER));
 	ft_bzero(&the_process->av[0], sizeof(int) * 3);
 	ft_bzero(&the_process->arg_type[0], (sizeof(t_arg_type) * 3));
@@ -33,12 +34,12 @@ static t_proc	*ft_mkproc(int pnum)
 	return (the_process);
 }
 
-t_list			*ft_add_process(t_list *processes, int pnum)
+t_list			*ft_add_process(t_vm *data, t_list *processes, int pnum)
 {
 	t_list	*new;
 	t_proc	*process;
 
-	if (!(process = ft_mkproc(pnum)))
+	if (!(process = ft_mkproc(data, pnum)))
 		return (NULL);
 	if (!(new = (t_list*)ft_lstnew((void*)process, (sizeof(t_proc)))))
 		return (NULL);
@@ -62,6 +63,7 @@ void			ft_init_vm(t_vm *data)
 	data->cycles = 1;
 	data->players_alive = 0;
 	data->cycle_reduction = 0;
+	data->cycle_check = CYCLE_TO_DIE;
 	data->processes = NULL;
 	data->checks = 0;
 	data->live = 0;

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/19 18:05:26 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 18:10:47 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,29 @@ static void	ft_check_alive(t_vm	*data)
 		i++;
 		process = (t_proc*)cur->content;
 		cur = cur->next;
-		if (process->live_at_cycle > REDUCED_CTD(data))
+		if (process->live_at_cycle > CYCLE_TO_DIE -
+				(CYCLE_DELTA * data->cycle_reduction))
+		{
+			if (data->verbose)
+				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+						process->id, process->live_at_cycle, REDUCED_CTD(data));
 			ft_lstrm_at(&(data->processes), i);
+		}
 	}
 }
 
 static void	ft_cycles(t_vm *data)
 {
 		data->cycles++;
-		if (CYCLE_TO_CHECK(data) == 0)
+		if (data->cycle_check == data->cycles - 1)
 		{
 			ft_check_alive(data);
 			data->checks++;
 			if (data->live >= NBR_LIVE || data->checks >= MAX_CHECKS)
 			{
 				data->cycle_reduction++;
+				data->cycle_check += CYCLE_TO_DIE -
+					(CYCLE_DELTA * data->cycle_reduction);
 				if (data->verbose)
 					ft_printf("Cycle to die is now %d\n",
 							REDUCED_CTD(data));

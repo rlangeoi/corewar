@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 16:15:52 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/20 17:57:24 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reduction)))
 # define	LAB_SIZE	(op_tab[(int)process->opcode].label_size ? 2 : 4);
 # define	MEMORY(X)	data->ram[(unsigned int)(X) % MEM_SIZE]
-# define	ID			(process->id + 1)
+# define	ID			(process->id)
 # define	ID1			(process->num + 1)
 # define	PC			process->pc
 # define	REG(x)		process->reg[process->av[(x)] - 1]
@@ -50,6 +50,7 @@ typedef struct		s_proc
 	int				reg[REG_NUMBER];
 	char			player;
 	char			num;
+	int				id;
 	int				av[3];
 	t_arg_type		arg_type[3];
 	char			opcode;
@@ -79,6 +80,7 @@ typedef struct		s_vm
 	int				nb_proc;
 	int				players_alive;
 	int				cycle_reduction;
+	int				cycle_check;
 	int				dump;
 	int				checks;
 	int				live;
@@ -88,7 +90,7 @@ typedef struct		s_vm
 }					t_vm;
 
 void				ft_init_vm(t_vm *data);
-t_list				*ft_add_process(t_list *processes, int pnum);
+t_list				*ft_add_process(t_vm *data, t_list *processes, int pnum);
 void				ft_create_processes(t_vm *data);
 void				ft_find_header_pnum(t_vm *data, int pnum);
 void				ft_get_header_number(t_vm *data, int players, t_proc *processes);
