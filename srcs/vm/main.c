@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:27:42 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/15 18:52:23 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/21 16:43:29 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	main(int argc, char **argv)
 		ft_parse_champs(&data);
 		ft_create_processes(&data);
 		ft_copy_champs(&data, data.headers);
-		ft_herald(data.processes);
+		ft_herald(data.processes, &data);
 		ft_vm_loop(&data, data.processes);
+		ft_herald_winner(&data);
 	}
 }

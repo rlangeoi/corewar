@@ -6,11 +6,42 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 19:50:39 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/21 16:43:20 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
+
+header_t	*get_header(t_vm *data, t_list *headers, int player)
+{
+	int			i;
+	int			j;
+	header_t	*ret;
+
+	i = -1;
+	j = 0;
+	while (++i < MAX_PLAYERS && i < player)
+	{
+		if (data->pnums[i])
+			j++;
+	}
+	headers = ft_lst_at(headers, j);
+	ret = ((header_t*)(headers->content));
+	return (ret);
+}
+
+void		ft_herald_winner(t_vm *data)
+{
+	t_list		*headers;
+	header_t	*head;
+
+	headers = data->headers;
+	if (data->cycles < data->dump || data->dump < 0)
+	{
+		head = get_header(data, headers, ABS(data->last_live));
+		ft_printf("Contestant %d, \"%s\", has won !\n", ABS(data->last_live), head->prog_name);
+	}
+}
 
 static void	ft_check_alive(t_vm	*data)
 {
@@ -25,7 +56,7 @@ static void	ft_check_alive(t_vm	*data)
 		i++;
 		process = (t_proc*)cur->content;
 		cur = cur->next;
-		if (process->live_at_cycle > CYCLE_TO_DIE -
+		if (process->live_at_cycle >= CYCLE_TO_DIE -
 				(CYCLE_DELTA * data->cycle_reduction))
 		{
 			if (data->verbose)

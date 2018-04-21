@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 17:57:24 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/21 16:43:53 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void				ft_parse_arguments(int argc, char **argv, t_vm *data);
 void				ft_parse_champs(t_vm *data);
 void				ft_copy_champs(t_vm *data, t_list *listheaders);
 int					ft_check_data(t_vm *data);
-void				ft_herald(t_list *lstproc);
+void				ft_herald(t_list *lstproc, t_vm *data);
+void				ft_herald_winner(t_vm *data);
 void				ft_vm_loop(t_vm *data, t_list *processes);
 void				ft_process(t_vm *data, t_proc *process);
 unsigned int		ft_check_endianness(t_vm *data);

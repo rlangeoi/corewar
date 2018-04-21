@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 19:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/19 16:12:36 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/21 15:38:44 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void				hexdump_adv(t_vm *data, t_proc *process, int adv)
 {
 	int	i;
 
+	adv = circular_mem(adv);
+	process->pc = circular_mem(process->pc);
 	ft_printf("ADV %d (%#.4x -> %#.4x) %.2x %.2x ", adv, process->pc,
 			process->pc + adv, data->ram[(process->pc) % MEM_SIZE],
 			data->ram[(process->pc + 1) % MEM_SIZE]);

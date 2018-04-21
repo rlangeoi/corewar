@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 19:19:23 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/20 19:18:16 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/21 15:24:27 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void		copy_process(t_vm *data, t_proc *process, t_proc *copy)
 	copy->id = data->nb_proc;
 	copy->carry = process->carry;
 	copy->live_at_cycle = process->live_at_cycle;
+//	if (copy->id > 1)
+//		ft_printf("Process %d created here from process %d, cycle %d, lived %d\n", copy->id, process->id, data->cycles, copy->live_at_cycle);
 //	copy->color = process->color;
 	ft_lstadd(&data->processes, ft_lstnew(copy, sizeof(t_proc)));
 }
