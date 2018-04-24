@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 10:31:52 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/15 18:55:24 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/23 22:32:12 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ void	ft_st(t_vm *data, t_proc *process)
 
 	if (is_reg(process, 0))
 	{
-		if (PARAM_TYPE(1) == REG_CODE && is_reg(process, 1))
+		if (PARAM_TYPE(1) == REG_CODE)
 		{
+			if (!is_reg(process, 1))
+			{
+				advance_pc(data, process);
+				return;
+			}
 			REG(1) = REG(0);
 			if (verbose_operations(data))
 				ft_printf("P %4d | st r%d %d\n", ID, PARAM(0), PARAM(1));

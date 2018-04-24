@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/21 16:43:20 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/23 23:15:40 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ header_t	*get_header(t_vm *data, t_list *headers, int player)
 		if (data->pnums[i])
 			j++;
 	}
-	headers = ft_lst_at(headers, j);
+	if (j == 0)
+		j++;
+	headers = ft_lst_at(headers, data->nb_players - j);
 	ret = ((header_t*)(headers->content));
 	return (ret);
 }
@@ -39,7 +41,9 @@ void		ft_herald_winner(t_vm *data)
 	if (data->cycles < data->dump || data->dump < 0)
 	{
 		head = get_header(data, headers, ABS(data->last_live));
-		ft_printf("Contestant %d, \"%s\", has won !\n", ABS(data->last_live), head->prog_name);
+		ft_printf("Contestant %d, \"%s\", has won !\n",
+				(ABS(data->last_live) ?
+				 ABS(data->last_live) : 1), head->prog_name);
 	}
 }
 
@@ -69,23 +73,25 @@ static void	ft_check_alive(t_vm	*data)
 
 static void	ft_cycles(t_vm *data)
 {
-		data->cycles++;
-		if (data->cycle_check <= data->cycles - 1)
+	data->cycles++;
+	if (data->cycles > data->cycle_check)
+	{
+		ft_check_alive(data);
+		data->checks++;
+		if (data->live > (NBR_LIVE - 1) || data->checks == MAX_CHECKS)
 		{
-			ft_check_alive(data);
-			data->checks++;
-			if (data->live >= NBR_LIVE || data->checks >= MAX_CHECKS)
-			{
-				data->cycle_reduction++;
-				data->cycle_check += CYCLE_TO_DIE -
-					(CYCLE_DELTA * data->cycle_reduction);
-				if (data->verbose)
-					ft_printf("Cycle to die is now %d\n",
-							REDUCED_CTD(data));
-				data->checks = 0;
-			}
-			data->live = 0;
+			data->cycle_reduction++;
+			data->cycle_check += CYCLE_TO_DIE -
+				(CYCLE_DELTA * data->cycle_reduction);
+			if (data->verbose)
+				ft_printf("Cycle to die is now %d\n",
+						REDUCED_CTD(data));
+			data->checks = 0;
 		}
+		else
+			data->cycle_check += REDUCED_CTD(data);
+		data->live = 0;
+	}
 }
 
 void		ft_vm_loop(t_vm *data, t_list *processes)

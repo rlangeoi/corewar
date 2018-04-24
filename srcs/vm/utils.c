@@ -6,11 +6,12 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 19:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/21 15:38:44 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/22 15:38:47 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
+#include <stdio.h>
 
 int					ft_types_check(t_proc *process, int i)
 {
@@ -31,7 +32,7 @@ void				hexdump_adv(t_vm *data, t_proc *process, int adv)
 
 	adv = circular_mem(adv);
 	process->pc = circular_mem(process->pc);
-	ft_printf("ADV %d (%#.4x -> %#.4x) %.2x %.2x ", adv, process->pc,
+	ft_printf("ADV %d (0x%.4x -> 0x%.4x) %.2x %.2x ", adv, process->pc,
 			process->pc + adv, data->ram[(process->pc) % MEM_SIZE],
 			data->ram[(process->pc + 1) % MEM_SIZE]);
 	i = 1;

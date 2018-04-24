@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:15:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 16:02:38 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:10:39 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int		ft_arg_types(t_vm *data, t_proc *process)
 	int i;
 	int ret;
 	int adv;
-	
+
+	process->reader = circular_mem(process->reader);	
 	process->ocp = data->ram[process->reader % MEM_SIZE];
 	process->arg_type[0] = data->ram[process->reader % MEM_SIZE] >> 6;
 	process->arg_type[1] = (data->ram[process->reader % MEM_SIZE] & 48) >> 4;
@@ -95,10 +96,10 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 
 static void		ft_parse_instruction(t_vm *data, t_proc *process)
 {
-	if (data->ram[process->pc % MEM_SIZE] >= 1 &&
-			data->ram[process->pc % MEM_SIZE] <= 16)
+	if (data->ram[(process->pc + MEM_SIZE) % MEM_SIZE] >= 1 &&
+			data->ram[(process->pc + MEM_SIZE) % MEM_SIZE] <= 16)
 	{
-		process->opcode = data->ram[process->pc % MEM_SIZE] - 1;
+		process->opcode = data->ram[(process->pc + MEM_SIZE) % MEM_SIZE] - 1;
 		process->at_cycle = op_tab[(int)process->opcode].cycles - 1;
 	}
 	else

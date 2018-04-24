@@ -1,4 +1,0 @@
-charge headers into an array rather than a list
-make headers[pnum] match player #pnum
-make sure processes are freed
-try and debug Live

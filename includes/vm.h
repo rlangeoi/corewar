@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/21 16:43:53 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/23 22:59:17 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define	VM_H
 
 # include "op.h"
-# include "../libft/include/libft.h"
+# include "../libft/includes/libft.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -40,6 +40,7 @@
 # define	ERR_HEADER	"Invalid header "
 # define	ERR_SIZE	"Program size does not match header"
 # define	ERR_UNKNOWN	"Unknown error happened. Exiting"
+# define	ERR_CODE_PARAM	-2147483444
 # define	NO_FLAG		0
 # define	FLAG_AFF	1
 # define	FLAG_CURSES	2
@@ -120,6 +121,7 @@ int					circular_mem(int address);
 void				store_reg(t_vm *data, int address, int reg_val);
 int					verbose_pc(t_vm *data);
 int					verbose_live(t_vm *data);
+int					get_param_long(t_vm *data, t_proc *process, int param, int *val);
 
 void				ft_add(t_vm *data, t_proc *process);
 void				ft_aff(t_vm *data, t_proc *process);
