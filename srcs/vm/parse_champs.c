@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/19 16:21:29 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:04:44 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 	if ((i = read(fd, (void *)(header), sizeof(header_t))) == -1)
 		exit_error(ERR_READ, NULL);
 	if (i != sizeof(header_t))
-		exit_error(ERR_HEADER, header->prog_name);
+		exit_error(ERR_HEADER, NULL);
 	header->magic = switch_endianness(header->magic);
 	header->prog_size = switch_endianness(header->prog_size);
 	if (header->prog_size > CHAMP_MAX_SIZE)
