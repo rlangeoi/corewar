@@ -50,7 +50,7 @@ void	ft_get_header_number(t_vm *data, int players, t_proc *process)
 	}
 	list = ft_lst_at(list, data->nb_players - (players));
 	if (list != NULL)
-		process->header = (header_t*)list->content;
+		process->header = (t_header*)list->content;
 	process->pc = (((data->nb_players - process->num) *
 				(MEM_SIZE / data->nb_players)) % MEM_SIZE);
 }

@@ -12,11 +12,11 @@
 
 #include "../../includes/vm.h"
 
-header_t	*get_header(t_vm *data, t_list *headers, int player)
+t_header	*get_header(t_vm *data, t_list *headers, int player)
 {
 	int			i;
 	int			j;
-	header_t	*ret;
+	t_header	*ret;
 
 	i = -1;
 	j = 0;
@@ -28,14 +28,14 @@ header_t	*get_header(t_vm *data, t_list *headers, int player)
 	if (j == 0)
 		j++;
 	headers = ft_lst_at(headers, data->nb_players - j);
-	ret = ((header_t*)(headers->content));
+	ret = ((t_header*)(headers->content));
 	return (ret);
 }
 
 void		ft_herald_winner(t_vm *data)
 {
 	t_list		*headers;
-	header_t	*head;
+	t_header	*head;
 
 	headers = data->headers;
 	if (data->cycles < data->dump || data->dump < 0)

@@ -15,7 +15,7 @@
 void			ft_herald(t_list *lstproc, t_vm *data)
 {
 	t_proc		*process;
-	header_t	*head;
+	t_header	*head;
 	int			i;
 	int			j;
 
@@ -37,10 +37,10 @@ void			ft_herald(t_list *lstproc, t_vm *data)
 	}
 }
 
-static header_t	*ft_champ_header(t_vm *data, t_list *listheaders, int pnum)
+static t_header	*ft_champ_header(t_vm *data, t_list *listheaders, int pnum)
 {
 	int			i;
-	header_t	*header;
+	t_header	*header;
 
 	i = MAX_PLAYERS;
 	while (--i > pnum)
@@ -64,7 +64,7 @@ void			ft_copy_champs(t_vm *data, t_list *listheaders)
 {
 	int			i;
 	int			ram_index;
-	header_t	*header;
+	t_header	*header;
 
 	i = -1;
 	ram_index = 0;

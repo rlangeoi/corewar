@@ -6,12 +6,12 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/24 15:00:55 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:49:09 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		VM_H
-# define	VM_H
+#ifndef VM_H
+# define VM_H
 
 # include "op.h"
 # include "../libft/includes/libft.h"
@@ -19,32 +19,30 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define	REDUCED_CTD(data)		(CYCLE_TO_DIE -\
-		(CYCLE_DELTA * data->cycle_reduction))
-# define	CYCLE_TO_CHECK(data)	(data->cycles %\
-		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reduction)))
-# define	LAB_SIZE	(g_op_tab[(int)process->opcode].label_size ? 2 : 4);
-# define	MEMORY(X)	data->ram[(unsigned int)(X) % MEM_SIZE]
-# define	ID			(process->id)
-# define	ID1			(process->num + 1)
-# define	PC			process->pc
-# define	REG(x)		process->reg[process->av[(x)] - 1]
-# define	PARAM(x)	process->av[(x)]
-# define	PARAM_TYPE(x)	process->arg_type[(x)]
-# define	OP_TAB		g_op_tab[(int)process->opcode]
+# define LARED			(data->cycle_reduction)
+# define REDUCED_CTD(data)	(CYCLE_TO_DIE - (CYCLE_DELTA * LARED))
+# define LAB_SIZE		(g_op_tab[(int)process->opcode].label_size ? 2 : 4);
+# define MEMORY(X)		data->ram[(unsigned int)(X) % MEM_SIZE]
+# define ID				(process->id)
+# define ID1			(process->num + 1)
+# define PC				process->pc
+# define REG(x)			process->reg[process->av[(x)] - 1]
+# define PARAM(x)		process->av[(x)]
+# define PARAM_TYPE(x)	process->arg_type[(x)]
+# define OP_TAB			g_op_tab[(int)process->opcode]
 
-# define	ERR_READ	"Can't read source file "
-# define	ERR_MALLOC	"Couldn't allocate memory"
-# define	ERR_DUMP	"Dump and verbose values cannot be negative"
-# define	ERR_PNUM	"Invalid player number"
-# define	ERR_HEADER	"Invalid header "
-# define	ERR_SIZE	"Program size does not match header"
-# define	ERR_UNKNOWN	"Unknown error happened. Exiting"
-# define	ERR_CODE_PARAM	-2147483444
-# define	NO_FLAG		0
-# define	FLAG_AFF	1
-# define	FLAG_CURSES	2
-# define	FLAG_COLOR	4
+# define ERR_READ		"Can't read source file "
+# define ERR_MALLOC		"Couldn't allocate memory"
+# define ERR_DUMP		"Dump and verbose values cannot be negative"
+# define ERR_PNUM		"Invalid player number"
+# define ERR_HEADER		"Invalid header "
+# define ERR_SIZE		"Program size does not match header"
+# define ERR_UNKNOWN	"Unknown error happened. Exiting"
+# define ERR_CODE_PARAM	-2147483444
+# define NO_FLAG		0
+# define FLAG_AFF		1
+# define FLAG_CURSES	2
+# define FLAG_COLOR		4
 
 typedef struct		s_proc
 {
@@ -64,7 +62,7 @@ typedef struct		s_proc
 	int				carry;
 	int				live;
 	int				color;
-	header_t		*header;
+	t_header		*header;
 }					t_proc;
 
 typedef struct		s_vm
@@ -94,7 +92,8 @@ void				ft_init_vm(t_vm *data);
 t_list				*ft_add_process(t_vm *data, t_list *processes, int pnum);
 void				ft_create_processes(t_vm *data);
 void				ft_find_header_pnum(t_vm *data, int pnum);
-void				ft_get_header_number(t_vm *data, int players, t_proc *processes);
+void				ft_get_header_number(t_vm *data, int players,
+		t_proc *processes);
 t_proc				*ft_get_proc_pnum(t_vm *data, int pnum);
 void				ft_parse_arguments(int argc, char **argv, t_vm *data);
 void				ft_parse_champs(t_vm *data);
@@ -121,7 +120,8 @@ int					circular_mem(int address);
 void				store_reg(t_vm *data, int address, int reg_val);
 int					verbose_pc(t_vm *data);
 int					verbose_live(t_vm *data);
-int					get_param_long(t_vm *data, t_proc *process, int param, int *val);
+int					get_param_long(t_vm *data, t_proc *process,
+		int param, int *val);
 
 void				ft_add(t_vm *data, t_proc *process);
 void				ft_aff(t_vm *data, t_proc *process);

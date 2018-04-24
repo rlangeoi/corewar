@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/24 15:25:29 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:48:52 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 {
 	int			r;
 	int			psize;
-	header_t	*header;
+	t_header	*header;
 
-	header = (header_t*)lst->content;
+	header = (t_header*)lst->content;
 	psize = (int)header->prog_size;
 	if ((r = read(fd, player, psize)) == -1)
 		exit_error(ERR_READ, NULL);
@@ -30,21 +30,21 @@ static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 
 static void	ft_parse_headers(t_vm *data, int fd, int pnum)
 {
-	header_t	*header;
+	t_header	*header;
 	t_list		*new;
 	int			i;
 
-	if (!(header = (header_t*)malloc(sizeof(header_t))))
+	if (!(header = (t_header*)malloc(sizeof(t_header))))
 		exit_error(ERR_MALLOC, NULL);
-	if ((i = read(fd, (void *)(header), sizeof(header_t))) == -1)
+	if ((i = read(fd, (void *)(header), sizeof(t_header))) == -1)
 		exit_error(ERR_READ, NULL);
-	if (i != sizeof(header_t))
+	if (i != sizeof(t_header))
 		exit_error(ERR_HEADER, NULL);
 	header->magic = switch_endianness(header->magic);
 	header->prog_size = switch_endianness(header->prog_size);
 	if (header->prog_size > CHAMP_MAX_SIZE)
 		exit_error("Champ too big in ", data->players[pnum]);
-	if (!(new = ft_lstnew(((void*)header), sizeof(header_t))))
+	if (!(new = ft_lstnew(((void*)header), sizeof(t_header))))
 		exit_error(ERR_MALLOC, NULL);
 	ft_lstadd(&(data->headers), new);
 }
