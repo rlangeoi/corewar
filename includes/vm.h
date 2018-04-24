@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/24 15:49:09 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:41:51 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_list				*ft_add_process(t_vm *data, t_list *processes, int pnum);
 void				ft_create_processes(t_vm *data);
 void				ft_find_header_pnum(t_vm *data, int pnum);
 void				ft_get_header_number(t_vm *data, int players,
-		t_proc *processes);
+		t_proc *processes, int i);
 t_proc				*ft_get_proc_pnum(t_vm *data, int pnum);
 void				ft_parse_arguments(int argc, char **argv, t_vm *data);
 void				ft_parse_champs(t_vm *data);

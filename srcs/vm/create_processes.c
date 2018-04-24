@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:08:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/24 14:21:25 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:43:04 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ t_proc	*ft_get_proc_pnum(t_vm *data, int pnum)
 	return (NULL);
 }
 
-void	ft_get_header_number(t_vm *data, int players, t_proc *process)
+void	ft_get_header_number(t_vm *data, int players, t_proc *process,
+		int i)
 {
 	t_list	*list;
 
 	list = data->headers;
 	if (process != NULL)
 	{
-		process->player = (char)players;
+		process->player = (char)++i;
 		process->num = (char)(data->nb_players + 1 - players);
 	}
 	list = ft_lst_at(list, data->nb_players - (players));
@@ -68,7 +69,7 @@ void	ft_find_header_pnum(t_vm *data, int pnum)
 			players++;
 		if (i == pnum)
 			ft_get_header_number(data, players,
-					(t_proc*)data->processes->content);
+					(t_proc*)data->processes->content, i);
 	}
 }
 
