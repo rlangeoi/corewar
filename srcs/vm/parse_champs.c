@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 18:32:26 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/24 15:04:44 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:25:29 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	ft_parse_instructions(t_list *lst, char *player, int fd)
 	if ((r = read(fd, player, psize)) == -1)
 		exit_error(ERR_READ, NULL);
 	if (r != psize)
+		exit_error(ERR_SIZE, NULL);
+	if (!((r = read(fd, player, 10)) == 0))
 		exit_error(ERR_SIZE, NULL);
 }
 
