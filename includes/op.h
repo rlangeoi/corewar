@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/04/14 19:14:20 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:33:14 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ typedef struct			s_op
 	int					label_size;
 }						t_op;
 
-extern t_op				op_tab[];
+extern t_op				g_op_tab[];
 
 #endif

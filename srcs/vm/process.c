@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:15:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/23 21:10:39 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:41:38 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		ft_arg_types(t_vm *data, t_proc *process)
 	int ret;
 	int adv;
 
-	process->reader = circular_mem(process->reader);	
+	process->reader = circular_mem(process->reader);
 	process->ocp = data->ram[process->reader % MEM_SIZE];
 	process->arg_type[0] = data->ram[process->reader % MEM_SIZE] >> 6;
 	process->arg_type[1] = (data->ram[process->reader % MEM_SIZE] & 48) >> 4;
@@ -26,18 +26,14 @@ static int		ft_arg_types(t_vm *data, t_proc *process)
 	i = -1;
 	adv = 2;
 	ret = 0;
-	while (++i < op_tab[(int)process->opcode].ac)
+	while (++i < g_op_tab[(int)process->opcode].ac)
 	{
-//		process->arg_type[i] =
-//			(data->ram[process->reader % MEM_SIZE] >> (6 - (2 * i)));
 		if (process->arg_type[i] == REG_CODE)
 			adv++;
-		else if (process->arg_type[i] == DIR_CODE &&
-				(!(op_tab[(int)process->opcode].label_size)))
+		else if (PARAM_TYPE(i) == DIR_CODE && (!(OP_TAB.label_size)))
 			adv = adv + DIR_SIZE;
-		else if (process->arg_type[i] == IND_CODE ||
-				(process->arg_type[i] == DIR_CODE &&
-				(op_tab[(int)process->opcode].label_size)))
+		else if (PARAM_TYPE(i) == IND_CODE || (PARAM_TYPE(i) == DIR_CODE &&
+				(g_op_tab[(int)process->opcode].label_size)))
 			adv = adv + IND_SIZE;
 		if ((ft_types_check(process, i)))
 			ret++;
@@ -50,10 +46,10 @@ static void		ft_args_cpy(t_vm *data, t_proc *process)
 	int	i;
 
 	i = -1;
-	while (++i < op_tab[(int)process->opcode].ac)
+	while (++i < g_op_tab[(int)process->opcode].ac)
 	{
 		if (process->arg_type[i] == 2 &&
-				op_tab[(int)process->opcode].label_size == 0)
+				g_op_tab[(int)process->opcode].label_size == 0)
 		{
 			process->av[i] = ft_ramcpy(data, 4, process->reader);
 			process->reader = (process->reader + 4) % MEM_SIZE;
@@ -76,7 +72,7 @@ static int		ft_get_args(t_vm *data, t_proc *process)
 	int ret;
 
 	process->reader = (process->pc + 1) % MEM_SIZE;
-	if (op_tab[(int)process->opcode].ocp)
+	if (g_op_tab[(int)process->opcode].ocp)
 	{
 		if ((ret = ft_arg_types(data, process)))
 			return (ret);
@@ -100,13 +96,13 @@ static void		ft_parse_instruction(t_vm *data, t_proc *process)
 			data->ram[(process->pc + MEM_SIZE) % MEM_SIZE] <= 16)
 	{
 		process->opcode = data->ram[(process->pc + MEM_SIZE) % MEM_SIZE] - 1;
-		process->at_cycle = op_tab[(int)process->opcode].cycles - 1;
+		process->at_cycle = g_op_tab[(int)process->opcode].cycles - 1;
 	}
 	else
 		process->reader = ++(process->pc) % MEM_SIZE;
 }
 
-void	ft_process(t_vm *data, t_proc *process)
+void			ft_process(t_vm *data, t_proc *process)
 {
 	int ret;
 

@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 09:27:20 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/21 15:23:59 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:30:41 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ char	*get_player(t_vm *data, int nb_champ)
 		process = champs->content;
 		if (nb_champ == (-1 * process->player))
 		{
-	//		process->nb_live++;
-	//		process->live_at_cycle = 0;
 			return (process->header->prog_name);
 		}
 		champs = champs->next;
@@ -45,7 +43,8 @@ void	ft_live(t_vm *data, t_proc *process)
 	{
 		data->last_live = PARAM(0);
 		if (verbose_live(data))
-			ft_printf("Player %d (%s) is said to be alive\n", ABS(PARAM(0)), player);
+			ft_printf("Player %d (%s) is said to be alive\n",
+					ABS(PARAM(0)), player);
 	}
 	advance_pc(data, process);
 }

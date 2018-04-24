@@ -16,11 +16,11 @@
 int					ft_types_check(t_proc *process, int i)
 {
 	if (process->arg_type[i] == REG_CODE)
-		return (op_tab[(int)process->opcode].av[i] & T_REG ? 0 : 1);
+		return (g_op_tab[(int)process->opcode].av[i] & T_REG ? 0 : 1);
 	else if (process->arg_type[i] == IND_CODE)
-		return (op_tab[(int)process->opcode].av[i] & T_IND ? 0 : 1);
+		return (g_op_tab[(int)process->opcode].av[i] & T_IND ? 0 : 1);
 	else if (process->arg_type[i] == DIR_CODE)
-		return (op_tab[(int)process->opcode].av[i] & T_DIR ? 0 : 1);
+		return (g_op_tab[(int)process->opcode].av[i] & T_DIR ? 0 : 1);
 	else if (!(process->arg_type[i]))
 		return (1);
 	return (0);

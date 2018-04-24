@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:11:36 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/21 16:09:18 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:31:22 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void			ft_herald(t_list *lstproc, t_vm *data)
 		if (data->pnums[i])
 		{
 			j++;
-			process = (t_proc*)(ft_lst_at(lstproc, data->pnums[MAX_PLAYERS] - j))->content;
+			process = (t_proc*)(ft_lst_at(lstproc,
+						data->pnums[MAX_PLAYERS] - j))->content;
 			head = process->header;
 			ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
-					process->player, head->prog_size, head->prog_name, head->comment);
+					process->player, head->prog_size, head->prog_name,
+					head->comment);
 		}
 	}
 }

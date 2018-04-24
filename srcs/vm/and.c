@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 13:04:54 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/15 18:33:07 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:20:48 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_and(t_vm *data, t_proc *process)
 		REG(2) = param_value[0] & param_value[1];
 		process->carry = REG(2) ? 0 : 1;
 		if (verbose_operations(data))
-			ft_printf("P% 5d | and %d %d r%d\n", ID, param_value[0], param_value[1],
-				PARAM(2));
+			ft_printf("P% 5d | and %d %d r%d\n", ID, param_value[0],
+					param_value[1], PARAM(2));
 	}
 	advance_pc(data, process);
 }

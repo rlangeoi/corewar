@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 10:31:52 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/23 22:32:12 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:42:23 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_st(t_vm *data, t_proc *process)
 			if (!is_reg(process, 1))
 			{
 				advance_pc(data, process);
-				return;
+				return ;
 			}
 			REG(1) = REG(0);
 			if (verbose_operations(data))
@@ -36,9 +36,6 @@ void	ft_st(t_vm *data, t_proc *process)
 			if (verbose_operations(data))
 				ft_printf("P %4d | st r%d %d\n", ID, PARAM(0), PARAM(1));
 		}
-		//process->carry = REG(0) ? 0 : 1 ;
-		//ft_printf("st : carry == [%d]\n", process->carry);
-		//ft_printf("st : registre == [%d]\n", REG(0));
 	}
 	advance_pc(data, process);
 }

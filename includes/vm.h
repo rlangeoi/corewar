@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 14:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/23 22:59:17 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:32:53 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 		(CYCLE_DELTA * data->cycle_reduction))
 # define	CYCLE_TO_CHECK(data)	(data->cycles %\
 		(CYCLE_TO_DIE - (CYCLE_DELTA * data->cycle_reduction)))
-# define	LAB_SIZE	(op_tab[(int)process->opcode].label_size ? 2 : 4);
+# define	LAB_SIZE	(g_op_tab[(int)process->opcode].label_size ? 2 : 4);
 # define	MEMORY(X)	data->ram[(unsigned int)(X) % MEM_SIZE]
 # define	ID			(process->id)
 # define	ID1			(process->num + 1)
@@ -31,7 +31,7 @@
 # define	REG(x)		process->reg[process->av[(x)] - 1]
 # define	PARAM(x)	process->av[(x)]
 # define	PARAM_TYPE(x)	process->arg_type[(x)]
-# define	OP_TAB		op_tab[(int)process->opcode]
+# define	OP_TAB		g_op_tab[(int)process->opcode]
 
 # define	ERR_READ	"Can't read source file "
 # define	ERR_MALLOC	"Couldn't allocate memory"

@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:08:30 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/20 16:28:11 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:21:25 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	ft_create_processes(t_vm *data)
 	{
 		if (data->pnums[i] != 0)
 		{
-			if (!(data->processes = ft_add_process(data, data->processes, (i + 1))))
+			if (!(data->processes = ft_add_process(data,
+							data->processes, (i + 1))))
 				exit_error(ERR_MALLOC, NULL);
 			else
 				ft_find_header_pnum(data, i);

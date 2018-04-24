@@ -6,7 +6,7 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 19:19:23 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/23 22:28:26 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:22:38 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void		copy_process(t_vm *data, t_proc *process, t_proc *copy)
 	while (nb--)
 		copy->reg[nb] = process->reg[nb];
 	copy->player = process->player;
-//	copy->pc = circular_mem(PC + PARAM(0));
 	copy->pc = (process->pc + ((short)(process->av[0]) % IDX_MOD)) % MEM_SIZE;
 	while (copy->pc < 0)
 		copy->pc += MEM_SIZE;
@@ -31,9 +30,6 @@ static void		copy_process(t_vm *data, t_proc *process, t_proc *copy)
 	copy->carry = process->carry;
 	copy->at_cycle = 0;
 	copy->live_at_cycle = process->live_at_cycle;
-//	if (copy->id > 1)
-//		ft_printf("Process %d created here from process %d, cycle %d, lived %d\n", copy->id, process->id, data->cycles, copy->live_at_cycle);
-//	copy->color = process->color;
 	ft_lstadd(&data->processes, ft_lstnew(copy, sizeof(t_proc)));
 }
 
@@ -45,7 +41,6 @@ static void		copy_processlfork(t_vm *data, t_proc *process, t_proc *copy)
 	while (nb--)
 		copy->reg[nb] = process->reg[nb];
 	copy->player = process->player;
-//	copy->pc = circular_mem(PC + PARAM(0));
 	copy->pc = (process->pc + ((short)(process->av[0]))) % MEM_SIZE;
 	while (copy->pc < 0)
 		copy->pc += MEM_SIZE;
@@ -56,9 +51,6 @@ static void		copy_processlfork(t_vm *data, t_proc *process, t_proc *copy)
 	copy->carry = process->carry;
 	copy->at_cycle = 0;
 	copy->live_at_cycle = process->live_at_cycle;
-//	if (copy->id > 1)
-//		ft_printf("Process %d created here from process %d, cycle %d, lived %d\n", copy->id, process->id, data->cycles, copy->live_at_cycle);
-//	copy->color = process->color;
 	ft_lstadd(&data->processes, ft_lstnew(copy, sizeof(t_proc)));
 }
 
@@ -88,7 +80,8 @@ void			ft_fork(t_vm *data, t_proc *process)
 	copy->pc = circular_mem(PC + (PARAM(0) % IDX_MOD));
 	copy_process(data, process, copy);
 	if (verbose_operations(data))
-		ft_printf("P% 5d | fork %hd (%d)\n", ID, PARAM(0), PC + (short)PARAM(0) % IDX_MOD);
+		ft_printf("P% 5d | fork %hd (%d)\n",
+				ID, PARAM(0), PC + (short)PARAM(0) % IDX_MOD);
 	advance_pc(data, process);
 }
 
@@ -100,6 +93,7 @@ void			ft_lfork(t_vm *data, t_proc *process)
 	copy->pc = circular_mem(PC + PARAM(0));
 	copy_processlfork(data, process, copy);
 	if (verbose_operations(data))
-		ft_printf("P% 5d | lfork %hd (%d)\n", ID, PARAM(0), PC + (short)PARAM(0));
+		ft_printf("P% 5d | lfork %hd (%d)\n",
+				ID, PARAM(0), PC + (short)PARAM(0));
 	advance_pc(data, process);
 }
