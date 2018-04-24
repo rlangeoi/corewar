@@ -6,14 +6,14 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 19:55:05 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/22 15:38:47 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:52:00 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 #include <stdio.h>
 
-int					ft_types_check(t_proc *process, int i)
+int				ft_types_check(t_proc *process, int i)
 {
 	if (process->arg_type[i] == REG_CODE)
 		return (g_op_tab[(int)process->opcode].av[i] & T_REG ? 0 : 1);
@@ -26,7 +26,7 @@ int					ft_types_check(t_proc *process, int i)
 	return (0);
 }
 
-void				hexdump_adv(t_vm *data, t_proc *process, int adv)
+void			hexdump_adv(t_vm *data, t_proc *process, int adv)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ void				hexdump_adv(t_vm *data, t_proc *process, int adv)
 	ft_printf("\n");
 }
 
-void				ft_dump_data(t_vm *data)
+void			ft_dump_data(t_vm *data)
 {
 	int	reader;
 	int offset;

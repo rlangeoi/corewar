@@ -6,13 +6,13 @@
 /*   By: gavizet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:25:07 by gavizet           #+#    #+#             */
-/*   Updated: 2018/04/24 14:29:15 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:55:42 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-void	ft_verbose_ldi(t_proc *process, int *value)
+static void		ft_verbose_ldi(t_proc *process, int *value)
 {
 	ft_printf("P %4d | ldi %d %d r%d\n", ID, value[0], value[1], PARAM(2));
 	ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
@@ -20,7 +20,7 @@ void	ft_verbose_ldi(t_proc *process, int *value)
 	PC + (value[0] + value[1]) % IDX_MOD);
 }
 
-void	ft_ldi(t_vm *data, t_proc *process)
+void			ft_ldi(t_vm *data, t_proc *process)
 {
 	int	value[2];
 	int	adress_to_load;

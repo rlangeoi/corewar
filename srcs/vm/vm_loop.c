@@ -6,7 +6,7 @@
 /*   By: rlangeoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 19:25:27 by rlangeoi          #+#    #+#             */
-/*   Updated: 2018/04/23 23:15:40 by rlangeoi         ###   ########.fr       */
+/*   Updated: 2018/04/24 14:53:41 by rlangeoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void		ft_herald_winner(t_vm *data)
 	{
 		head = get_header(data, headers, ABS(data->last_live));
 		ft_printf("Contestant %d, \"%s\", has won !\n",
-				(ABS(data->last_live) ?
-				 ABS(data->last_live) : 1), head->prog_name);
+				(ABS(data->last_live) ? ABS(data->last_live) : 1),
+				head->prog_name);
 	}
 }
 
-static void	ft_check_alive(t_vm	*data)
+static void	ft_check_alive(t_vm *data)
 {
 	t_proc	*process;
 	t_list	*cur;
@@ -101,7 +101,7 @@ void		ft_vm_loop(t_vm *data, t_list *processes)
 	while ((data->cycles <= data->dump || data->dump < 0) && processes)
 	{
 		if (data->verbose)
-			ft_printf("It is now cycle %d\n",data->cycles);
+			ft_printf("It is now cycle %d\n", data->cycles);
 		while (processes)
 		{
 			process = (t_proc*)processes->content;
